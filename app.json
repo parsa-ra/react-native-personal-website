@@ -1,0 +1,12 @@
+{
+  "name": "personal-website",
+  "displayName": "personal-website",
+  "expo": {
+    "name": "personal-website",
+    "slug": "personal-website",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
