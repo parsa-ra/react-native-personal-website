@@ -1,5 +1,5 @@
 import React, {useState, useContext, useRef} from "react" ; 
-import {View, StyleSheet, VirtualizedList} from "react-native" ; 
+import {View, StyleSheet, VirtualizedList, FlatList} from "react-native" ; 
 import {Svg} from "react-native-svg" ; 
 import {RootStoreContext} from "../env" ; 
 import {colors} from "../theme/Colors" ; 
@@ -7,6 +7,41 @@ import {SText} from "../components/Text" ;
 import {DropDownIndicator} from "../components/Svgs" ; 
 import { useCallback } from "react";
 
+const Freshness = {
+    'High':   {val: 0},
+    'Medium': {val: 1},
+    'Low':    {val: 2},
+}
+
+const Level = {
+    'Beginner': {val: 0},
+    'Mediocre': {val: 1},
+    'Pro':      {val: 2},
+}
+
+const parseDataToArrayLike = (data) => {
+    var arrayLike = [] ;
+
+    var sections = Object.keys(data)
+    for(var sectionIdx in sections) {
+        var newSection = {
+            title: sections[sectionIdx]   
+        }
+        var dataArray = [] ;
+        var skills = Object.keys(data[sections[sectionIdx]])
+        for(var skillIdx in skills) {
+            var dataObject = {} ; 
+            dataObject["title"] = skills[skillIdx] ;
+            dataObject["data"] = data[sections[sectionIdx]][skills[skillIdx]]  ; 
+            dataArray.push(dataObject) ; 
+        }
+        
+        newSection["data"] = dataArray ; 
+        arrayLike.push(newSection) ; 
+    }
+
+    return arrayLike ; 
+}
 
 const Data= {
     'Programming Languages':{
@@ -51,6 +86,7 @@ const Data= {
             addInfo: 'Mostly OpenGL/OpenGL ES',
         },
         'VHDL': {
+            title: 'VHDL',
             freshness: 'low',
             level: 'mediocre',
             addInfo: "",
@@ -70,23 +106,12 @@ const Data= {
         "Embedded Systems": {
             freshness: 'low',
             level: 'mediocre',
-            addInfo: "Most 00s start they programming experience in Atmel area, my passion for embedded system still to date continues also I have some experiences using RTOS. ARM "
+            addInfo: "Most 90s kids start they programming experience in Atmel area, my passion for embedded system still to date continues also I have some experiences using RTOS. ARM "
         }
-    },
-    'FillTest1':{},
-    'FillTest2':{},
-    'FillTest3':{},
-    'FillTest4':{},
-    'FillTest5':{},
-    'FillTest6':{},
-    'FillTest7':{},
-    'FillTest8':{},
-    'FillTest9':{},
-    'FillTest10':{},
-    'FillTest11':{},
-    'FillTest12':{},
-    'FillTest13':{},
+     }
 }
+
+const parsedData = parseDataToArrayLike(Data) ; 
 
 const styles = StyleSheet.create({
     
@@ -95,7 +120,7 @@ const styles = StyleSheet.create({
 
 const SkillCard = (props) => {
     return <View style={[{
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 5, 
         borderColor: props.borderColor,
         flex: 1,
@@ -154,7 +179,7 @@ export const SectionContainer = (props) => {
         }>
         <View style={{
             borderRadius: 5,
-            borderWidth: 2,
+            borderWidth: 1,
             borderColor: colors['light'].border,
             padding: 0,
             flex: 1,
@@ -165,7 +190,8 @@ export const SectionContainer = (props) => {
                 alignItems: 'center',
                 padding: 2,
                 flex: 1,
-                borderBottomWidth: 1,
+                borderBottomWidth: opened ? 1 : 0,
+                borderColor: colors['light'].border,
             }}>
                 <SText style={{fontSize: 20}}> {props.title} </SText>
                 <DropDownIndicator height={20} pressHandler={setOpenedCallBack} />
@@ -176,19 +202,25 @@ export const SectionContainer = (props) => {
                 padding: 10,
                 border: 5,
             }}>
-                {console.log(props.data)}
-                 <VirtualizedList 
+
+                {/* <FlatList 
                     data={props.data}
-                    initialNumToRender={5}
-                    renderItem={({item}) => <SkillCard data={item.data} title={item.title}/>}
+                    renderItem={({item}) => {
+                        return <SkillCard title={item.title} data={item.data}/> 
+                    }}
                     keyExtractor={(item) => item.title}
-                    getItemCount={(data) => Object.keys(data).length}
-                    getItem={_getItemDetails}
-                /> 
+                /> */}
+
+                {
+                    props.data.map((item) => 
+                        <SkillCard key={item.title} title={item.title} data={item.data}/>
+                    )
+                }
+                
             </View> : null }
         </View>
     </View>
-}
+} 
 
 SectionContainer.defaultProps = {
     title: "none"
@@ -203,13 +235,10 @@ export const SkillFlexController = (props) => {
     </View>
 }
 
-const _getItem = (data, index) => {
-    const title = Object.keys(data)[index] ;
-    return {
-        data: data[Object.keys(data)[index]],
-        title: title
-    }
-}
+const _renderItem = ({item}) => {
+    console.log(item) ;
+    return <SectionContainer title={item.title} data={item.data}/>
+} 
 
 export const Skills = (props) => {
     const rootStore = useContext(RootStoreContext) ; 
@@ -224,7 +253,7 @@ export const Skills = (props) => {
         border: 5,
         padding: 10,
     }}>
-        <VirtualizedList 
+        {/* <VirtualizedList 
             style={{
                 flex: 1,
             }}
@@ -234,7 +263,12 @@ export const Skills = (props) => {
             keyExtractor={(item) => item.title}
             getItemCount={(data) => Object.keys(data).length}
             getItem={_getItem}
-        /> 
+        />  */}
+        <FlatList 
+            data={parsedData}
+            renderItem={_renderItem}
+            keyExtractor={ item => item.title }
+        />
 
     </View>)
 }

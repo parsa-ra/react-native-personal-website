@@ -23,7 +23,7 @@ export const Appbar = ()=>{
     }}>       
         {/*<Button title="Drawer" onPress={()=>{toggleDrawer()}}/> */}
         <ImageButton buttImage={drawerPic} onPressHandler={toggleDrawer} backgroundColor={colors[rootStore.theme].fillAreaColor} />
-
+        
         
     </View>
 }
