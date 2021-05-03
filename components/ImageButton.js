@@ -1,6 +1,7 @@
 import { PropTypes } from "mobx-react";
 import React from "react" ; 
 import {TouchableHighlight, Image, Text, View, TextPropTypes} from "react-native" ; 
+import {colors} from "../theme/Colors" ; 
 
 
 export const ImageButton = (props) => {
@@ -9,6 +10,7 @@ export const ImageButton = (props) => {
         justifyContent: "center",
         alignItems: "center",
      }}
+     underlayColor = {colors['light'].border}
      onPress={() => props.onPressHandler()} 
     >
         <View style={[{
@@ -36,3 +38,5 @@ ImageButton.defaultProps = {
     buttText: "none",
     buttImage: "none",
 }
+
+

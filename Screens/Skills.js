@@ -1,9 +1,10 @@
 import React, {useState, useContext, useRef} from "react" ; 
-import {View, StyleSheet, VirtualizedList, FlatList} from "react-native" ; 
+import {View, StyleSheet, VirtualizedList, FlatList, TouchableHighlight} from "react-native" ; 
+import {observer} from "mobx-react-lite"
 import {Svg} from "react-native-svg" ; 
-import {RootStoreContext} from "../env" ; 
+import {RootStoreContext, generalStyles} from "../env" ; 
 import {colors} from "../theme/Colors" ; 
-import {SText} from "../components/Text" ; 
+import {SText, StyledMD} from "../components/Text" ; 
 import {DropDownIndicator} from "../components/Svgs" ; 
 import { useCallback } from "react";
 
@@ -106,19 +107,23 @@ const Data= {
         "Embedded Systems": {
             freshness: 'low',
             level: 'mediocre',
-            addInfo: "Most 90s kids start they programming experience in Atmel area, my passion for embedded system still to date continues also I have some experiences using RTOS. ARM "
+            addInfo: "Most 90s kids start they programming experience in [Atmel](https://atmel.com) area, my passion for embedded system still to date continues also I have some experiences using RTOS. ARM "
         }
      }
 }
 
 const parsedData = parseDataToArrayLike(Data) ; 
 
+
 const styles = StyleSheet.create({
     
 }) ;
 
-
-const SkillCard = (props) => {
+const SkillCard = observer((props) => {
+//     console.log("********************") ; 
+//     console.log(props.children) ; 
+//     console.log(typeof props.children) ; 
+    
     return <View style={[{
         borderWidth: 1,
         borderRadius: 5, 
@@ -142,17 +147,17 @@ const SkillCard = (props) => {
 
         </View>
         <View style={{flex:2}}>
-            <SText>
+            <StyledMD>
                 {props.data.addInfo}    
-            </SText>
+            </StyledMD>
         </View>
 
 
     </View>
-}
+}) ;
 
 SkillCard.defaultProps = {
-    borderColor: '#eaeaeaff'
+    borderColor: colors['light'].border ,
 }
 
 const _getItemDetails = (data, index) => {
@@ -163,14 +168,16 @@ const _getItemDetails = (data, index) => {
     };
 }
 
-export const SectionContainer = (props) => {
+export const SectionContainer = observer((props) => {
     const [opened, setOpened] = useState(false) ;
+    const rootStore = useContext(RootStoreContext) ;
     
     const setOpenedCallBack = useCallback(val => {
         setOpened(val) ;
     }, [setOpened]) ; 
 
-    return <View style={
+    return (
+        <View style={
         {
             flex: 1,
             padding: 5,
@@ -180,22 +187,27 @@ export const SectionContainer = (props) => {
         <View style={{
             borderRadius: 5,
             borderWidth: 1,
-            borderColor: colors['light'].border,
+            borderColor: colors[rootStore.theme].border,
             padding: 0,
             flex: 1,
         }}>
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: 2,
-                flex: 1,
-                borderBottomWidth: opened ? 1 : 0,
-                borderColor: colors['light'].border,
-            }}>
-                <SText style={{fontSize: 20}}> {props.title} </SText>
-                <DropDownIndicator height={20} pressHandler={setOpenedCallBack} />
-            </View>
+            <TouchableHighlight style={{}} onPress={
+                ()=> {
+                    setOpened(!opened) ;
+                }} underlayColor={props.underlayColor}>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: 2,
+                    flex: 1,
+                    borderBottomWidth: opened ? 1 : 0,
+                    borderColor: colors['light'].border,
+                }}>
+                    <SText style={{fontSize: 20}}> {props.title} </SText>
+                    <DropDownIndicator height={20} pressHandler={setOpenedCallBack} opened={opened}/>
+                </View>
+            </TouchableHighlight>
 
             {opened ? 
             <View style={{
@@ -213,16 +225,17 @@ export const SectionContainer = (props) => {
 
                 {
                     props.data.map((item) => 
-                        <SkillCard key={item.title} title={item.title} data={item.data}/>
+                        <SkillCard key={item.title} title={item.title} data={item.data} theme={rootStore.theme}/>
                     )
                 }
                 
             </View> : null }
         </View>
-    </View>
-} 
+    </View> )
+});
 
 SectionContainer.defaultProps = {
+    underlayColor: "#eaeaeaff",
     title: "none"
 }
 
@@ -240,35 +253,26 @@ const _renderItem = ({item}) => {
     return <SectionContainer title={item.title} data={item.data}/>
 } 
 
-export const Skills = (props) => {
+export const Skills = observer((props) => {
     const rootStore = useContext(RootStoreContext) ; 
 
     return (
-    <View style={{
+    <View style={[{
         flexDirection: 'column',
-        alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'flex-start',
         alignItems: 'stretch',
-        flex: 1,
-        border: 5,
+        backgroundColor: colors[rootStore.theme].fillAreaColor,
+        width: rootStore.portrait ? '100%' : '70%', 
         padding: 10,
-    }}>
-        {/* <VirtualizedList 
-            style={{
-                flex: 1,
-            }}
-            data={Data}
-            initialNumToRender={5}
-            renderItem={({item}) => <SectionContainer data={item.data} title={item.title}/>}
-            keyExtractor={(item) => item.title}
-            getItemCount={(data) => Object.keys(data).length}
-            getItem={_getItem}
-        />  */}
+    }, generalStyles.screenContainer]}>
+
         <FlatList 
             data={parsedData}
             renderItem={_renderItem}
             keyExtractor={ item => item.title }
+            theme={rootStore.them}
         />
 
     </View>)
-}
+}) ;

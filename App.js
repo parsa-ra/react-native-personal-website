@@ -9,13 +9,13 @@ import { StyleSheet, Text, View, ActivityIndicator, Dimensions, Platform} from '
 import {Appbar} from "./components/Appbar" ; 
 import { observer } from 'mobx-react-lite';
 import {RootStore} from "./Stores/RootStore" ; 
-import {NavigationContainer} from "@react-navigation/native" ; 
-import {createStackNavigator} from "@react-navigation/stack" ; 
-import {createDrawerNavigator} from "@react-navigation/drawer" ; 
-import {Home, About, Skills} from "./Screens" ;
+import {NavigationContainer, DefaultTheme} from "@react-navigation/native" ; 
+import {createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem} from "@react-navigation/drawer" ; 
+import {Home, About, Skills, Publications} from "./Screens" ;
 import {isReadyRef, navigationRef} from "./components/RootNavigation" ; 
 import {window, screen, RootStoreContext} from "./env" ; 
 import {colors} from "./theme/Colors" ; 
+import {PinSvg} from "./components/Svgs"
 
 export const rootStore = RootStore.create({
   navStack: "home",
@@ -25,52 +25,69 @@ export const rootStore = RootStore.create({
   theme: 'light',
 }) ; 
 
-
 const Drawer = createDrawerNavigator() ; 
-const StackNav = createStackNavigator() ; 
+
+const DrawerContent = observer((props)=>(
+    <DrawerContentScrollView {...props}>
+      { rootStore.portrait ? null : 
+        <DrawerItem  label= {({color, focused}) => (<PinSvg width={30} height={30} pinned={rootStore.drawerType == 'permanent' ? true : false}/>)} 
+        style={{
+          flexDirection: 'row-reverse',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        onPress={()=>rootStore.toggleDrawerType()}
+      />
+      }
+      <DrawerItemList {...props}/>
+    </DrawerContentScrollView>
+))
+
 const DrawerNav = observer(()=>(
   <Drawer.Navigator 
     initialRouteName="Skills" 
-    drawerType={rootStore.drawerType} 
-    drawerStyle={{
-      backgroundColor: colors[rootStore.theme].fillAreaColor,
-      width:150
-    }}
     screenOptions={{
-      headerStyle: {
-        backgroundColor: "#eaba33" 
+      background: colors[rootStore.theme].secondaryFillAreaColor,
+      drawerType: rootStore.drawerType,
+      drawerStyle: {
+        backgroundColor: colors[rootStore.theme].fillAreaColor,
+        width: rootStore.portrait ? "50%" : "18%"
       },
-      headerTitleStyle: {
-        fontSize: 30,
+      drawerLabelStyle: {
         fontFamily: 'Ubuntu',
-        fontWeight: '500', 
-      }
-    }}>
-    <Drawer.Screen name="Home" component={Home} options={{
-      headerStyle: {
-        backgroundColor: "#eaba33" 
+        fontSize: 20,
+        color: colors[rootStore.theme].primaryTextColor,
       },
-      headerTitleStyle: {
-        fontSize: 30,
-        fontFamily: 'Ubuntu',
-        fontWeight: '500', 
-      }
-    }}/>
+      headerShown: false,
+      drawerActiveBackgroundColor: colors[rootStore.theme].drawerActiveColor,
+      drawerInactiveBackgroundColor: colors[rootStore.theme].drawerInactiveColor,
+    }}
+    drawerContent={(props)=>(
+     <DrawerContent {...props} /> 
+    )}
+    >
+    <Drawer.Screen name="Home" component={Home} />
     <Drawer.Screen name="About" component={About} />
     <Drawer.Screen name="Skills" component={Skills} />
+    <Drawer.Screen name="Publications" component={Publications} /> 
   </Drawer.Navigator>
 ))
 
 
-export default function App() {
+ export const App = observer(() => {
   const [loadingDone, setLoadingDone] = useState(false) ;
+  var navTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme,
+      background: colors[rootStore.theme].secondaryFillAreaColor,
+      primary: colors[rootStore.theme].primary,
+      border: colors[rootStore.theme].border,
+      text: colors[rootStore.theme].primaryContrastTextColor,
+      card: colors[rootStore.theme].fillAreaColor,
+    },
+  };
   
-  // const Nav = (props) => {
-  //   return <NavigationContainer>
-  //       <Drawer.Screen name="home" component={Home}/>
-  //       <Drawer.Screen name="about" component={About}/>
-  //   </NavigationContainer>
-  // }
   Dimensions.addEventListener('change', ({window, screen})=>{
     rootStore.setDims(window.width, window.height) ; 
   }) ; 
@@ -78,7 +95,21 @@ export default function App() {
   useEffect(()=>{
     //setLoadingDone(true) ; 
     isReadyRef.current = false ; 
-  }, []) 
+  }, [])
+  
+  useEffect(()=>{
+    navTheme = {
+      ...DefaultTheme,
+      colors: {
+        ...DefaultTheme,
+        background: colors[rootStore.theme].secondaryFillAreaColor,
+        primary: colors[rootStore.theme].primary,
+        border: colors[rootStore.theme].border,
+        text: colors[rootStore.theme].primaryContrastTextColor,
+        card: colors[rootStore.theme].fillAreaColor,
+      },
+    };
+  }, [rootStore.theme])
 
   const _loadAssets = async()=>{ 
     return Promise.all([
@@ -101,15 +132,16 @@ export default function App() {
     setLoadingDone(false) ; 
   }
 
-
-
   return loadingDone ? 
     <RootStoreContext.Provider value={rootStore}>
       <View style={styles.container}>
         <NavigationContainer 
+          theme={navTheme}
           linking={{config:{screens:{
             "Home": "en/home",
-            "About": "en/about" 
+            "About": "en/about",
+            "Skills": "en/skills",
+            "Publications": "en/pubs"
           }}}} 
           onReady={()=>{isReadyRef.current = true;}}
           ref={navigationRef}>
@@ -127,7 +159,7 @@ export default function App() {
        justifyContent: 'center',
        flex: 1,
       }
-      }>
+    }>
 
     <ActivityIndicator size="large"/>  
     <AppLoading 
@@ -136,16 +168,15 @@ export default function App() {
           onError={ _onLoadingError }
       />
     </View>
-}
+}) ;
 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors[rootStore.theme].secondaryFillAreaColor,
     alignItems: 'stretch',
     justifyContent: 'flex-start',
     flexDirection: 'column',
-
   },
 });

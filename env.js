@@ -9,9 +9,10 @@ export const RootStoreContext = React.createContext(null) ;
 export const generalStyles = StyleSheet.create({
     screenContainer: {
         flex: 1,
-        margin: 4, 
-        border: 2,
+        margin: 10, 
+        border: 10,
         borderRadius: 5,
         padding: 10,
+        height: "100%"
     }
 })

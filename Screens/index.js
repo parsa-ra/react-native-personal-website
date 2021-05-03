@@ -1,4 +1,5 @@
 export * from "./Home" ; 
 export * from "./About" ;
 export * from "./Skills" ; 
-export const screen = ["home", "about", "skills"] ; 
+export * from "./Publications" ; 
+export const screen = ["home", "about", "skills", "publications"] ; 

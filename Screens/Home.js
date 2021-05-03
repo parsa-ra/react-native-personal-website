@@ -1,6 +1,6 @@
 import React from "react" ; 
-import {View,Button, StyleSheet} from "react-native";
-import {SText} from "../components/Text" ; 
+import {View,Button, StyleSheet, SafeAreaView, ScrollView} from "react-native";
+import {SText, StyledMD} from "../components/Text" ; 
 import {observer} from "mobx-react-lite" ; 
 //import {rootStore} from "../App" ; 
 import {RootStoreContext, generalStyles} from "../env" ; 
@@ -24,26 +24,48 @@ const styles = StyleSheet.create(
     }
 )
 
+const HomeContent = 
+`# Welcome
+I'm parsa and welcome to my website. 
+
+## Interests 
+---
+
+I love many things in technology sector, here are few of them that I currently consider to peruse for the rest of my life. Since this specific sector is extremely volatile with respect ot time it may change rapidly, so keep tuning in.
+
+
+* Computational Systems (e.g. Computational Photography, Computational Dynamic Modeling, ...)
+* ML, AI: who doesn't?
+` ; 
+
 
 export const Home = observer(({navigation})=> {
     const rootStore = useContext(RootStoreContext) ;
 
-    return <View style={[
+    return (
+        <SafeAreaView>
+        <ScrollView contentInsetAdjustmentBehavior="automatic"
+          style={{height: '100%'}}>
+        <View style={[
             {
                 alignSelf: 'center',
                 alignItems: 'flex-start',
                 justifyContent: 'flex-start',
+                width: rootStore.portrait ? "100%" : "70%",
                 backgroundColor: colors[rootStore.theme].fillAreaColor,
             }, generalStyles.screenContainer]
         }>
-        <SText style={styles.header}>Welcome</SText>
-        <SText style={styles.main}>Hi I'm Parsa, I hope this website will provide you the information you're looking for.</SText>
-
-        <Button title="About" onPress={()=>{rootStore.setNavStack("About"); 
+            
+        {/* <Button title="About" onPress={()=>{rootStore.setNavStack("About"); 
                                             navigation.navigate("About");}}/>
-        <Button title="Drawer" onPress={()=> navigation.toggleDrawer()}/>
+        <Button title="Drawer" onPress={()=> navigation.toggleDrawer()}/> */}
 
-        <ImageButton buttText="Salam"/> 
+        <StyledMD>
+            {HomeContent} 
+        </StyledMD>
         
     </View>
+    </ScrollView>
+    </SafeAreaView>
+    )
 }) ; 
