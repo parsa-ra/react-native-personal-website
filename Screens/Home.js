@@ -6,7 +6,7 @@ import {observer} from "mobx-react-lite" ;
 import {RootStoreContext, generalStyles} from "../env" ; 
 import { useContext } from "react";
 import {colors} from "../theme/Colors" ; 
-import {ImageButton} from "../components/ImageButton" ; 
+import {Footer} from "../components/Footer" ; 
 
 const styles = StyleSheet.create(
     {
@@ -36,6 +36,9 @@ I love many things in technology sector, here are few of them that I currently c
 
 * Computational Systems (e.g. Computational Photography, Computational Dynamic Modeling, ...)
 * ML, AI: who doesn't?
+
+# Welcome
+I'm parsa and welcome to my website. 
 ` ; 
 
 
@@ -43,9 +46,8 @@ export const Home = observer(({navigation})=> {
     const rootStore = useContext(RootStoreContext) ;
 
     return (
-        <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior="automatic"
-          style={{height: '100%'}}>
+    <ScrollView contentInsetAdjustmentBehavior="automatic"
+          contentContainerStyle={[generalStyles.scrollView]}>
         <View style={[
             {
                 alignSelf: 'center',
@@ -64,8 +66,10 @@ export const Home = observer(({navigation})=> {
             {HomeContent} 
         </StyledMD>
         
-    </View>
+        
+        </View>
+
+        <Footer/>
     </ScrollView>
-    </SafeAreaView>
     )
 }) ; 

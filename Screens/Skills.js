@@ -1,5 +1,5 @@
 import React, {useState, useContext, useRef} from "react" ; 
-import {View, StyleSheet, VirtualizedList, FlatList, TouchableHighlight} from "react-native" ; 
+import {View, StyleSheet, VirtualizedList, FlatList, TouchableHighlight, ScrollView} from "react-native" ; 
 import {observer} from "mobx-react-lite"
 import {Svg} from "react-native-svg" ; 
 import {RootStoreContext, generalStyles} from "../env" ; 
@@ -7,6 +7,7 @@ import {colors} from "../theme/Colors" ;
 import {SText, StyledMD} from "../components/Text" ; 
 import {DropDownIndicator} from "../components/Svgs" ; 
 import { useCallback } from "react";
+import { Footer } from "../components/Footer";
 
 const Freshness = {
     'High':   {val: 0},
@@ -257,6 +258,8 @@ export const Skills = observer((props) => {
     const rootStore = useContext(RootStoreContext) ; 
 
     return (
+    <ScrollView contentInsetAdjustmentBehavior="automatic"
+        contentContainerStyle={[generalStyles.scrollView]}>
     <View style={[{
         flexDirection: 'column',
         alignSelf: 'center',
@@ -274,5 +277,8 @@ export const Skills = observer((props) => {
             theme={rootStore.them}
         />
 
-    </View>)
+    </View>
+
+    <Footer/>
+    </ScrollView>)
 }) ;

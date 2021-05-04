@@ -2,22 +2,22 @@ import React, {useContext} from "react" ;
 import {View, ScrollView} from "react-native" ;
 import {observer} from "mobx-react-lite"
 import {SText, StyledMD} from "../components/Text" ; 
-import {Footer} from "../components/Footer" ;
 import {colors} from "../theme/Colors" ;
 import {generalStyles, RootStoreContext} from "../env" ; 
+import {Footer} from "../components/Footer" ; 
 
-const aboutMD = `# About
+const contactMD = `# Contact
 ---
 
-Things about me ... 
+The way to contact me ... 
 `
 
-export const About = observer((props)=>{
+export const Contact = observer((props)=>{
     const rootStore = useContext(RootStoreContext) ; 
 
     return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic" 
-          contentContainerStyle={[generalStyles.scrollView]}>
+    <ScrollView contentInsetAdjustmentBehavior="automatic"
+        contentContainerStyle={[generalStyles.scrollView]}>
     <View style={[{
         alignSelf: 'center',
         alignItems: 'stretch',
@@ -26,13 +26,13 @@ export const About = observer((props)=>{
         backgroundColor: colors[rootStore.theme].fillAreaColor,
     }, generalStyles.screenContainer]}>
         <StyledMD>
-            {aboutMD} 
+            {contactMD} 
         </StyledMD>
         {/* <Button title="Home" onPress={()=>{
                               rootStore.setNavStack("Home"); 
                               props.navigation.navigate("Home") ; }}/> */}
     </View>
-
-    <Footer /> 
+    
+    <Footer />
     </ScrollView>)
 })

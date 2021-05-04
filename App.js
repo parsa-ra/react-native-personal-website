@@ -5,13 +5,14 @@ import {Asset} from 'expo-asset' ;
 import * as Font from "expo-font" ; 
 import AppLoading from 'expo-app-loading' ; 
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, Dimensions, Platform} from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, Dimensions, Platform, ScrollView} from 'react-native';
 import {Appbar} from "./components/Appbar" ; 
+import {Footer} from "./components/Footer" ;
 import { observer } from 'mobx-react-lite';
 import {RootStore} from "./Stores/RootStore" ; 
 import {NavigationContainer, DefaultTheme} from "@react-navigation/native" ; 
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem} from "@react-navigation/drawer" ; 
-import {Home, About, Skills, Publications} from "./Screens" ;
+import {Home, About, Skills, Publications, Contact} from "./Screens" ;
 import {isReadyRef, navigationRef} from "./components/RootNavigation" ; 
 import {window, screen, RootStoreContext} from "./env" ; 
 import {colors} from "./theme/Colors" ; 
@@ -70,6 +71,7 @@ const DrawerNav = observer(()=>(
     <Drawer.Screen name="About" component={About} />
     <Drawer.Screen name="Skills" component={Skills} />
     <Drawer.Screen name="Publications" component={Publications} /> 
+    <Drawer.Screen name="Contact" component={Contact} />
   </Drawer.Navigator>
 ))
 
@@ -141,13 +143,15 @@ const DrawerNav = observer(()=>(
             "Home": "en/home",
             "About": "en/about",
             "Skills": "en/skills",
-            "Publications": "en/pubs"
+            "Publications": "en/pubs",
+            "Contact": "en/contact",
           }}}} 
           onReady={()=>{isReadyRef.current = true;}}
           ref={navigationRef}>
+
           <Appbar/>
 
-          <DrawerNav /> 
+          <DrawerNav />   
 
         </NavigationContainer>
         <StatusBar style="auto" />

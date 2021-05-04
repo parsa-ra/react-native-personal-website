@@ -4,6 +4,7 @@ import React, {useEffect, useContext, useState} from "react" ;
 import {colors} from "../theme/Colors" ; 
 import {RootStoreContext} from "../env" ;
 import Hoverable from "./Hoverable" ;
+import {navigate} from "../components/RootNavigation" ;
 
 
 const SvgStyles = StyleSheet.create({
@@ -68,11 +69,11 @@ export const PinSvg = (props) => {
             }}>
                 <Svg width="100%" height="100%" viewBox="0 0 100 100">
                     <Path 
-                        d = 'M 10 90 L 42.5 42.5 L 30 30 Q 60 40 50 20 Q 100 0 80 50 Q 60 40 70 70 L 57.5 57.5 L 10 90'
+                        d = 'M 10 90 L 42.5 42.5 L 30 30 Q 60 40 50 20 Q 100 0 80 50 Q 60 40 70 70 L 57.5 57.5 L 10 90' strokeWidth="5" stroke="black" fill="none"
                     /> 
                     {
                         props.pinned ? 
-                        <Path d = 'M 25 5 L 75 95' strokeWidth="10" stroke="black" fill="none"/>
+                        <Path d = 'M 35 5 L 65 95' strokeWidth="10" stroke="black" fill="none"/>
                         : null
                     }
                 </Svg>
@@ -108,10 +109,14 @@ export const Logo = (props) => {
         height: props.height,
         width: props.width,
         marginLeft: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
     }}>
+        <TouchableHighlight onPress={()=> navigate("Home")} underlayColor={"#eaeaeaff"}>
         <Svg width="100%" height="100%" viewBox="0 0 1045.44 864">
-            <Path id="shape0" transform="matrix(1.62119053092193 0 0 1.49634761278181 761.462558801524 183.595816697935)" fill="none" stroke="#12516e" stroke-width="40" stroke-linecap="square" stroke-linejoin="bevel" d="M82.7894 317.095C93.8061 294.675 77.0011 330.095 73.9071 334.417C55.5355 353.225 30.3419 365.766 5.51291 321.907C-0.779074 305.128 2.24221 321.012 0.541068 293.915C-6.0489 188.947 49.7671 -6.28472 48.0611 0.155455"/><Path id="shape1" transform="matrix(1.62119053092193 0 0 1.49634761278181 642.427380629087 502.460145282227)" fill="none" stroke="#12516e" stroke-width="40" stroke-linecap="square" stroke-linejoin="bevel" d="M134.896 3.9161C141.147 -15.2381 129.62 40.327 81.6022 74.1672C21.8535 116.274 -15.2865 128.474 6.10209 118.435"/><Path id="shape2" transform="matrix(1.62119053092193 0 0 1.49634761278181 130.137648488796 89.9829296490907)" fill="none" stroke="#12516e" stroke-width="40" stroke-linecap="square" stroke-linejoin="bevel" d="M491.307 143.401C515.326 111.685 394.111 271.892 317.435 323.118C239.258 375.192 83.376 428.384 24.3169 320.953C0.165792 277.021 -0.910807 216.557 0.334557 167.94C2.25792 92.8552 29.5713 -18.6459 24.9831 2.65785"/>
+            <Path id="shape0" transform="matrix(1.62119053092193 0 0 1.49634761278181 761.462558801524 183.595816697935)" fill="none" stroke="#12516e" strokeWidth="40" strokeLinecap="square" strokeLinejoin="bevel" d="M82.7894 317.095C93.8061 294.675 77.0011 330.095 73.9071 334.417C55.5355 353.225 30.3419 365.766 5.51291 321.907C-0.779074 305.128 2.24221 321.012 0.541068 293.915C-6.0489 188.947 49.7671 -6.28472 48.0611 0.155455"/><Path id="shape1" transform="matrix(1.62119053092193 0 0 1.49634761278181 642.427380629087 502.460145282227)" fill="none" stroke="#12516e" strokeWidth="40" strokeLinecap="square" strokeLinejoin="bevel" d="M134.896 3.9161C141.147 -15.2381 129.62 40.327 81.6022 74.1672C21.8535 116.274 -15.2865 128.474 6.10209 118.435"/><Path id="shape2" transform="matrix(1.62119053092193 0 0 1.49634761278181 130.137648488796 89.9829296490907)" fill="none" stroke="#12516e" strokeWidth="40" strokeLinecap="square" strokeLinejoin="bevel" d="M491.307 143.401C515.326 111.685 394.111 271.892 317.435 323.118C239.258 375.192 83.376 428.384 24.3169 320.953C0.165792 277.021 -0.910807 216.557 0.334557 167.94C2.25792 92.8552 29.5713 -18.6459 24.9831 2.65785"/>
         </Svg>
+        </TouchableHighlight>
     </View>)
 }
 

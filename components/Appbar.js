@@ -2,7 +2,7 @@ import React from 'react' ;
 import {View, Button, TouchableHighlight} from 'react-native' ;  
 import {colors} from "../theme/Colors"; 
 import {useNavigation} from "@react-navigation/native"
-import {navigationRef, toggleDrawer} from "./RootNavigation" ; 
+import {navigationRef, toggleDrawer, navigate} from "./RootNavigation" ; 
 import {ImageButton} from "../components/ImageButton" ; 
 import {Logo, Sun, Moon} from "../components/Svgs" ; 
 import {RootStoreContext} from "../env" ;

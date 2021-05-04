@@ -90,6 +90,10 @@ export const StyledMD = (props) => {
             fontWeight: '800',
             color: colors[rootStore.theme].primaryTextColor,
         },
+        hr: {
+            //color: colors[rootStore.theme].primaryTextColor,
+            backgroundColor: colors[rootStore.theme].primaryTextColor, 
+        }
     })
     
 
