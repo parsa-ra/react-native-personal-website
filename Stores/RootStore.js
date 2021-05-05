@@ -6,6 +6,7 @@ export const RootStore = types.model({
     height: types.number,
     drawerType: types.string,
     theme: types.union(types.literal('light'), types.literal('dark')),
+    keyboardHidden: types.boolean,
 }).actions((self)=>{
     return {
         setNavStack(screen) {
@@ -28,11 +29,16 @@ export const RootStore = types.model({
         setDims(width, height){
             self.width = width ; 
             self.height = height ; 
-            if(height/width > 1.0){
-                self.drawerType = 'front' ; 
-            }else{
-                self.drawerType = 'permanent' ; 
+            if(self.keyboardHidden) {
+                if(height/width > 1.0){
+                    self.drawerType = 'front' ; 
+                }else{
+                    self.drawerType = 'permanent' ; 
+                }
             }
+        },
+        setKeyboardState(state){
+            self.keyboardState = state ; 
         }
     }
 }).views((self)=>{

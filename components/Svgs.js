@@ -36,7 +36,7 @@ export const DropDownIndicator = (props)=> {
             <Svg width="100%" height="100%" viewBox="0 0 100 100">
             <Path 
                 d = {`M 10 ${currentYs[0]} Q 50 ${currentYs[1]} 90 ${currentYs[2]}`}
-                stroke= "black"
+                stroke= {colors[props.theme].secondaryTextColor}
                 strokeWidth= "10" 
                 fill="none"
             />
@@ -46,7 +46,8 @@ export const DropDownIndicator = (props)=> {
 };
 
 DropDownIndicator.defaultProps = {
-    underlayColor: "#eaeaeaff"
+    underlayColor: "#eaeaeaff",
+    theme: 'light',
 }
 
 const NavPic = ({state}) => {
@@ -163,4 +164,36 @@ export const Moon = (props) => {
             </Svg> 
         </View>
     )
+}
+
+export const Magnifier = (props) => {
+
+    const m = 5 ; 
+    const r = 35 ;
+    const c = Math.sqrt(2)/2 ; 
+    const strokeWidth = "5";
+    const strokeColor = props.disabled ? colors[props.theme].disabled : colors[props.theme].border ; 
+
+    return (
+        <View style={[SvgStyles.container, {height: props.height, width: props.width}]}>
+            <Svg width="100%" height="100%" viewBox="0 0 100 100">
+                <Circle cx={`${r+m}`}
+                        cy={`${r+m}`}
+                        r ={r.toString()}
+                        fill="none"
+                        strokeWidth={strokeWidth}
+                        stroke={strokeColor}/>
+                <Path 
+                    d = {`M ${(m+(1+c)*r)} ${m+(1+c)*r} L ${100 - m} ${100 - m} `} 
+                    strokeWidth={strokeWidth}
+                    stroke={strokeColor}
+                    />
+            </Svg>
+        </View>
+    )
+} ;
+
+Magnifier.defaultProps = {
+    active: false,
+    theme: 'light',
 }

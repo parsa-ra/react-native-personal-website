@@ -1,6 +1,7 @@
 import { PropTypes } from "mobx-react";
 import React from "react" ; 
-import {TouchableHighlight, Image, Text, View, TextPropTypes} from "react-native" ; 
+import {TouchableHighlight, Image, Text, View, TextPropTypes} from "react-native" ;
+import {SText} from "../components/Text" ; 
 import {colors} from "../theme/Colors" ; 
 
 
@@ -11,12 +12,15 @@ export const ImageButton = (props) => {
         alignItems: "center",
      }}
      underlayColor = {colors['light'].border}
+     disabled = {props.disabled}  
      onPress={() => props.onPressHandler()} 
     >
         <View style={[{
             flexDirection: 'row',
             backgroundColor: props.backgroundColor,
             borderRadius: 3,
+            padding: 5,
+            borderColor: props.disabled ? colors[props.theme].disabled : colors[props.theme].primaryTextColor,
         }, {...props.viewStyle}]}>
 
             {props.buttImage != "none" ? 
@@ -25,9 +29,11 @@ export const ImageButton = (props) => {
             }
 
             {props.buttText != "none" ? 
-                <Text>
+                <SText style={{
+                    color: props.disabled ? colors[props.theme].disabled : colors[props.theme].primaryTextColor,
+                }}>
                     {props.buttText}
-                </Text> : 
+                </SText> : 
             null}
 
         </View>
@@ -37,6 +43,8 @@ export const ImageButton = (props) => {
 ImageButton.defaultProps = {
     buttText: "none",
     buttImage: "none",
+    disabled: false,
+    theme: 'light',
 }
 
 

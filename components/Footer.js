@@ -15,11 +15,14 @@ export const Footer = (props) => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: colors['light'].primary,
+            borderTopColor: colors[rootStore.theme].border, 
+            borderTopWidth: 1,
+            flexWrap: "wrap",
+            backgroundColor: colors[rootStore.theme].fillAreaColor,
             minHeight: 60,
         }]}>
             <Logo height={40} width={40}/> 
-            <SText style={{color: "#dadada"}}> Copyright © 2020-{date.getFullYear().toString()}, Made by Parsa </SText>
+            <SText style={{color: colors[rootStore.theme].primaryTextColor}}> Copyright © 2020-{date.getFullYear().toString()}, Made by Parsa </SText>
 
         </View>
     )

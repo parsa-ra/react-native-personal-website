@@ -5,7 +5,7 @@ import {Asset} from 'expo-asset' ;
 import * as Font from "expo-font" ; 
 import AppLoading from 'expo-app-loading' ; 
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, Dimensions, Platform, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, Dimensions, Platform, Keyboard} from 'react-native';
 import {Appbar} from "./components/Appbar" ; 
 import {Footer} from "./components/Footer" ;
 import { observer } from 'mobx-react-lite';
@@ -16,7 +16,7 @@ import {Home, About, Skills, Publications, Contact} from "./Screens" ;
 import {isReadyRef, navigationRef} from "./components/RootNavigation" ; 
 import {window, screen, RootStoreContext} from "./env" ; 
 import {colors} from "./theme/Colors" ; 
-import {PinSvg} from "./components/Svgs"
+import {PinSvg} from "./components/Svgs" ; 
 
 export const rootStore = RootStore.create({
   navStack: "home",
@@ -24,6 +24,7 @@ export const rootStore = RootStore.create({
   height: window.height,
   drawerType: 'front',
   theme: 'light',
+  keyboardHidden: true,
 }) ; 
 
 const Drawer = createDrawerNavigator() ; 
@@ -93,6 +94,14 @@ const DrawerNav = observer(()=>(
   Dimensions.addEventListener('change', ({window, screen})=>{
     rootStore.setDims(window.width, window.height) ; 
   }) ; 
+
+  // Keyboard.addEventListener('keyboardDidShow', ()=>{
+  //   rootStore.setKeyboardState(false) ; 
+  // }) ; 
+
+  // Keyboard.addEventListener('keyboardDidHide', ()=>{
+  //   rootStore.setKeyboardState(true) ; 
+  // })
 
   useEffect(()=>{
     //setLoadingDone(true) ; 
