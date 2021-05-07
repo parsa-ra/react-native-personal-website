@@ -1,9 +1,10 @@
 {
-  "name": "personal-website",
-  "displayName": "personal-website",
+  "name": "Parsa's Website",
+  "displayName": "Parsa's Website",
+  "icon": "./assets/images/icon.png",
   "expo": {
-    "name": "personal-website",
-    "slug": "personal-website",
+    "name": "Parsa's Website",
+    "slug": "Parsa's Website",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

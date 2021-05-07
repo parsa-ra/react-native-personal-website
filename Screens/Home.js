@@ -1,5 +1,5 @@
 import React from "react" ; 
-import {View,Button, StyleSheet, SafeAreaView, ScrollView} from "react-native";
+import {View,Button, StyleSheet, SafeAreaView, ScrollView, Image} from "react-native";
 import {SText, StyledMD} from "../components/Text" ; 
 import {observer} from "mobx-react-lite" ; 
 //import {rootStore} from "../App" ; 
@@ -24,10 +24,15 @@ const styles = StyleSheet.create(
     }
 )
 
-const HomeContent = 
-`# Welcome
+const HeaderMD = 
+`
+# Welcome
 I'm parsa and welcome to my website. 
 
+`
+
+const HomeContent = 
+`
 ## Interests 
 ---
 
@@ -53,8 +58,11 @@ export const Home = observer(({navigation})=> {
                 alignSelf: 'center',
                 alignItems: 'flex-start',
                 justifyContent: 'flex-start',
-                width: rootStore.portrait ? "100%" : "70%",
+                width: rootStore.portrait ? "100%" : "80%",
+                flex: 1,
                 backgroundColor: colors[rootStore.theme].fillAreaColor,
+                paddingRight: 0,
+                paddingTop: 0,
             }, generalStyles.screenContainer]
         }>
             
@@ -62,11 +70,47 @@ export const Home = observer(({navigation})=> {
                                             navigation.navigate("About");}}/>
         <Button title="Drawer" onPress={()=> navigation.toggleDrawer()}/> */}
 
+        <View style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            flex: 1,
+            width: "100%",
+        }}>
+
+            <View style={{
+                flex:3,
+                padding: rootStore.portrait ? 20 : 40,
+            }}>
+                <StyledMD>
+                    {HeaderMD}
+                </StyledMD>
+            </View>
+
+            <View style={{
+                flex:1,
+                //backgroundColor: colors[rootStore.theme].primary,
+                paddingLeft: rootStore.portrait ? 10 : 20,
+                paddingRight: rootStore.portrait ? 10 : 20,
+                borderTopRightRadius: 5,
+                borderLeftWidth: 1,
+                borderLeftColor: colors[rootStore.theme].border,
+                alignItems: 'center',
+                flexDirection: 'row',
+                justifyContent: 'center',
+            }}>
+                <Image source={require("../assets/images/mypic.jpeg")} style={{width: "100%", height: "100%", borderRadius: 10}} resizeMode='contain'/>
+            </View>
+
+        </View>
+
+        <View style={{
+            padding: 10,
+        }}>
         <StyledMD>
             {HomeContent} 
         </StyledMD>
-        
-        
+        </View>
+
         </View>
 
         <Footer/>

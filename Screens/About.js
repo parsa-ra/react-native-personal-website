@@ -22,7 +22,7 @@ export const About = observer((props)=>{
         alignSelf: 'center',
         alignItems: 'stretch',
         justifyContent: 'flex-start',
-        width: rootStore.portrait ? "100%" : "70%",
+        width: rootStore.portrait ? "100%" : "80%",
         backgroundColor: colors[rootStore.theme].fillAreaColor,
     }, generalStyles.screenContainer]}>
         <StyledMD>

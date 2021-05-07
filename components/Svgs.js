@@ -172,6 +172,7 @@ export const Magnifier = (props) => {
     const r = 35 ;
     const c = Math.sqrt(2)/2 ; 
     const strokeWidth = "5";
+    const handleStrokeWidth = "10"
     const strokeColor = props.disabled ? colors[props.theme].disabled : colors[props.theme].border ; 
 
     return (
@@ -185,7 +186,7 @@ export const Magnifier = (props) => {
                         stroke={strokeColor}/>
                 <Path 
                     d = {`M ${(m+(1+c)*r)} ${m+(1+c)*r} L ${100 - m} ${100 - m} `} 
-                    strokeWidth={strokeWidth}
+                    strokeWidth={handleStrokeWidth}
                     stroke={strokeColor}
                     />
             </Svg>
@@ -196,4 +197,20 @@ export const Magnifier = (props) => {
 Magnifier.defaultProps = {
     active: false,
     theme: 'light',
+}
+
+export const Mail = (props) => {
+
+    const m = 20 ; 
+    const w = 5 ;
+
+    return (
+        <View style={[SvgStyles.container, {height: props.height, width: props.width}]}>
+            <Svg width="100%" height="100%" viewBox="0 0 100 100">
+                <Path d = {`M ${w} ${w+m} L ${100-w} ${w+m} L ${100-w} ${100-w-m} L ${w} ${100-w-m} Z L 50 50 L ${100-w} ${w+m}`}/>
+
+            </Svg>
+        </View>
+    )
+
 }

@@ -45,6 +45,14 @@ const parseDataToArrayLike = (data) => {
     return arrayLike ; 
 }
 
+const SkillsScreenHeaderMD = `
+# Skills
+---
+
+Here you can find some of the major skills that I've learned through out my years of experience in industry and academia. Each skill is labeled by it's freshness in my mind and also my proficiency level at that skill.
+
+`
+
 const Data= {
     'Programming Languages':{
         'C++':{
@@ -109,6 +117,11 @@ const Data= {
             freshness: 'low',
             level: 'mediocre',
             addInfo: "Most 90s kids start they programming experience in [Atmel](https://atmel.com) area, my passion for embedded system still to date continues also I have some experiences using RTOS. ARM "
+        },
+        "DApps" : {
+            freshness: 'medium',
+            level: 'medium',
+            addInfo: "Developing prototyping apps on etheruem's test net",
         }
      }
 }
@@ -121,17 +134,12 @@ const styles = StyleSheet.create({
 }) ;
 
 const SkillCard = observer((props) => {
-//     console.log("********************") ; 
-//     console.log(props.children) ; 
-//     console.log(typeof props.children) ; 
-    
+ 
     return <View style={[{
-        borderWidth: 1,
-        borderRadius: 5, 
-        borderColor: props.borderColor,
         flex: 1,
         border: 5,
         margin: 5,
+        padding: 5,
     },{...props.style}]}>
         <View style={{
             padding: 0,
@@ -140,7 +148,7 @@ const SkillCard = observer((props) => {
             flex: 1,
             flexDirection: "row",
         }}>
-            <SText style={{fontSize: 20}}>
+            <SText style={{fontSize: 20, color: colors[props.theme].primaryTextColor}}>
                 {props.title}
             </SText>
         </View>
@@ -170,7 +178,7 @@ const _getItemDetails = (data, index) => {
 }
 
 export const SectionContainer = observer((props) => {
-    const [opened, setOpened] = useState(false) ;
+    const [opened, setOpened] = useState(true) ;
     const rootStore = useContext(RootStoreContext) ;
     
     const setOpenedCallBack = useCallback(val => {
@@ -178,17 +186,15 @@ export const SectionContainer = observer((props) => {
     }, [setOpened]) ; 
 
     return (
-        <View style={
-        {
+        <View style={{
             flex: 1,
             padding: 5,
             border: 5,
         }
         }>
         <View style={{
-            borderRadius: 5,
-            borderWidth: 1,
-            borderColor: colors[rootStore.theme].border,
+            borderBottomWidth : 1,
+            borderBottomColor: colors[rootStore.theme].border,
             padding: 0,
             flex: 1,
         }}>
@@ -205,7 +211,7 @@ export const SectionContainer = observer((props) => {
                     borderBottomWidth: opened ? 1 : 0,
                     borderColor: colors['light'].border,
                 }}>
-                    <SText style={{fontSize: 20}}> {props.title} </SText>
+                    <SText style={{fontSize: 25, color: colors[rootStore.theme].primaryTextColor}}> {props.title} </SText>
                     <DropDownIndicator height={20} pressHandler={setOpenedCallBack} opened={opened}/>
                 </View>
             </TouchableHighlight>
@@ -213,7 +219,11 @@ export const SectionContainer = observer((props) => {
             {opened ? 
             <View style={{
                 padding: 10,
-                border: 5,
+                borderLeftColor: colors[rootStore.theme].border,
+                marginBottom: 10,
+                marginTop: 10,
+                marginLeft: 10,
+                borderLeftWidth: 5
             }}>
 
                 {/* <FlatList 
@@ -269,6 +279,10 @@ export const Skills = observer((props) => {
         width: rootStore.portrait ? '100%' : '70%', 
         padding: 10,
     }, generalStyles.screenContainer]}>
+
+        <StyledMD>
+            {SkillsScreenHeaderMD}
+        </StyledMD>
 
         <FlatList 
             data={parsedData}

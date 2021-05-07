@@ -8,6 +8,7 @@ import {generalStyles, RootStoreContext} from "../env" ;
 import { Footer } from "../components/Footer";
 import {DropDownIndicator, Magnifier} from "../components/Svgs" ;
 import { useEffect } from "react";
+import { Video } from "expo-av";
 
 const PublicationScreenHeader = 
 `# Publications
@@ -23,8 +24,8 @@ const PublicationArray = [
         title: 'ICCV 2021 Submission',
         pdf: 'none',
         bib: 'none', 
-        description: `In this article we propose and effective yet efficient differentiable computational graph to stabilize videos captured in devices equipped with gyroscope. We can't publish additional infos at this time due to possible violation of ICCV's rules. here you can see example result of the algorithm.`,
-        videos: ['/assets/vids/iccv21-1.mp4'],
+        description: `In this article we propose an effective yet efficient differentiable computational graph to stabilize videos captured in devices equipped with gyroscope. We can't publish additional infos at this time due to possible violation of ICCV's rules. here you can see an example output of our algorithm.`,
+        videoSource: require("../assets/vids/1.webm"),
 
     },
 ] ; 
@@ -55,7 +56,7 @@ const SearchBar = (props) => {
 
             <TextInput
                 ref={textInputRef}
-                placeholder="Search in Articles"
+                placeholder= {`Search in Articles ${props.disabled ? "(Disabled)" : ""}`}
                 placeholderTextColor={props.disabled ? colors[rootStore.theme].disabled : colors[rootStore.theme].border }
                 autoCapitalize="words"
             />
@@ -66,6 +67,8 @@ const SearchBar = (props) => {
 
 const PublicationCard = (props) => {
     const [isOpened, setIsOpened] = useState(true) ;
+    const video  = useRef(null) ;
+    const [videoStatus, setVideoStatus] = useState({}) ; 
     
     return (
         <View style={{
@@ -99,32 +102,72 @@ const PublicationCard = (props) => {
             </TouchableHighlight>
                 
             {isOpened ? <View style={
-                {flexDirection: 'row'}
+                {}
             }>
-                <View style={{
-                    flex: 3,
-                    padding: 10,
-                }
-                }>
-                    <StyledMD>
-                        {props.description}
-                    </StyledMD> 
-                </View>
 
-                <View style={{
-                    flex: 1,
-                    flexDirection: 'column',
-                    padding: 10,
-                    borderLeftColor: colors[props.theme].border,
-                    borderLeftWidth: 1,
-                }}>
-                   <ImageButton buttText="Download PDF" disabled={props.pdf == 'none' ? true : false}
-                        viewStyle={{borderWidth: 1, margin: 5}} theme={props.theme}/>
-                   <ImageButton buttText="Copy BibTex" disabled={props.bib == 'none' ? true : false} 
-                        viewStyle={{borderWidth: 1, margin: 5}} theme={props.theme}/>
+                <View style={{flexDirection: 'row'}}>
+                    <View style={{
+                        flex: 3,
+                        padding: 10,
+                    }
+                    }>
+                        <StyledMD>
+                            {props.description}
+                        </StyledMD> 
+                    </View>
 
-                </View>
+                    <View style={{
+                        flex: 1,
+                        flexDirection: 'column',
+                        padding: 10,
+                        borderLeftColor: colors[props.theme].border,
+                        borderLeftWidth: 1,
+                    }}>
+                    <ImageButton buttText="Download PDF" disabled={props.pdf == 'none' ? true : false}
+                            viewStyle={{borderWidth: 1, margin: 5, flex:1, width: "100%", justifyContent: 'center'}} theme={props.theme}/>
+                    <ImageButton buttText="Copy BibTex" disabled={props.bib == 'none' ? true : false} 
+                            viewStyle={{borderWidth: 1, margin: 5, flex:1, width: "100%", justifyContent: 'center'}} theme={props.theme}/>
+
+                    </View>
+                </View> 
+
+                {/* {
+                    props.vids != 'none' ? props.vids.map(
+                        (item) => {
+                            return(
+                                <Video 
+                                    key = {item}
+                                    ref = {video}
+                                    source= {require(item)}
+                                    useNativeControls
+                                    resizeMode="contain"
+                                    isLooping={false}
+                                    onError={(err) => console.log(err) }
+
+                                />
+                            )
+                        }
+                    ) : null 
+                } */}
+
+                {
+                    props.videoSource != 'none' 
+                    ?
+                    <Video 
+                            ref = {video}
+                            source= {props.videoSource}
+                            useNativeControls
+                            resizeMode="contain"
+                            isLooping={false}
+                            onError={err => console.log(err) }
+                            onPlaybackStatusUpdate={status => console.log(status)}
+                        />
+                    : 
+                    null
+                }   
+
             </View> : null }
+
         </View>
     )
 };
@@ -135,6 +178,8 @@ PublicationCard.defaultProps = {
     pdf: 'none',
     description: 'none',
     bib: 'none',
+    vids: 'none',
+    videoSource: 'none',
 }
 
 
@@ -148,7 +193,7 @@ export const Publications = observer((props) => {
             alignSelf: 'center',
             alignItems: 'stretch',
             justifyContent: 'flex-start',
-            width: rootStore.portrait ? "100%" : "70%",
+            width: rootStore.portrait ? "100%" : "80%",
             backgroundColor: colors[rootStore.theme].fillAreaColor,
         }, generalStyles.screenContainer]}>
             <StyledMD>
@@ -158,9 +203,10 @@ export const Publications = observer((props) => {
             <SearchBar disabled={true}/> 
 
             <ScrollView> 
-                {PublicationArray.map((item) => (
-                    <PublicationCard title={item.title} description={item.description} theme={rootStore.theme} key={item.title} pdf={item.pdf} bib={item.bib}/>
-                ))}
+                {PublicationArray.map((item) => {
+
+                    return <PublicationCard title={item.title} description={item.description} theme={rootStore.theme} key={item.title} pdf={item.pdf} bib={item.bib} videoSource={item.videoSource}/>
+                })}
             </ScrollView>
 
         </View>

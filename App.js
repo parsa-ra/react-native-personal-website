@@ -47,13 +47,13 @@ const DrawerContent = observer((props)=>(
 
 const DrawerNav = observer(()=>(
   <Drawer.Navigator 
-    initialRouteName="Skills" 
+    initialRouteName="Publications" 
     screenOptions={{
       background: colors[rootStore.theme].secondaryFillAreaColor,
       drawerType: rootStore.drawerType,
       drawerStyle: {
         backgroundColor: colors[rootStore.theme].fillAreaColor,
-        width: rootStore.portrait ? "50%" : "18%"
+        width: rootStore.portrait ? "50%" : "20%"
       },
       drawerLabelStyle: {
         fontFamily: 'Ubuntu',
@@ -126,6 +126,7 @@ const DrawerNav = observer(()=>(
     return Promise.all([
       Asset.loadAsync([
         require("./assets/images/drawer_pic.png"),
+        require("./assets/images/mypic.jpeg"),
       ]),
       Font.loadAsync({
         Ubuntu: require("./assets/fonts/Ubuntu-Regular.ttf"),

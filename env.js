@@ -17,6 +17,6 @@ export const generalStyles = StyleSheet.create({
         borderRadius: 5,
         padding: 10,
         minHeight: "100%",
-        justifyContent: "space-between"
+        justifyContent: "flex-start"
     }
 })
