@@ -2,6 +2,7 @@
   "name": "Parsa's Website",
   "displayName": "Parsa's Website",
   "icon": "./assets/images/icon.png",
+  
   "expo": {
     "name": "Parsa's Website",
     "slug": "Parsa's Website",

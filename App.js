@@ -68,7 +68,7 @@ const DrawerNav = observer(()=>(
      <DrawerContent {...props} /> 
     )}
     >
-    <Drawer.Screen name="Home" component={Home} />
+    <Drawer.Screen name="Home" component={Home}  />
     <Drawer.Screen name="About" component={About} />
     <Drawer.Screen name="Skills" component={Skills} />
     <Drawer.Screen name="Publications" component={Publications} /> 
