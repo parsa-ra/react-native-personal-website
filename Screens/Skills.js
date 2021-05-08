@@ -212,7 +212,7 @@ export const SectionContainer = observer((props) => {
                     borderColor: colors['light'].border,
                 }}>
                     <SText style={{fontSize: 25, color: colors[rootStore.theme].primaryTextColor}}> {props.title} </SText>
-                    <DropDownIndicator height={20} pressHandler={setOpenedCallBack} opened={opened}/>
+                    <DropDownIndicator height={20} pressHandler={setOpenedCallBack} opened={opened} theme={rootStore.theme}/>
                 </View>
             </TouchableHighlight>
 

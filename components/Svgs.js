@@ -60,6 +60,7 @@ const NavPic = ({state}) => {
 }
 
 export const PinSvg = (props) => {
+
     return (
         <Hoverable accessible={true}>
         {hover => (
@@ -70,11 +71,11 @@ export const PinSvg = (props) => {
             }}>
                 <Svg width="100%" height="100%" viewBox="0 0 100 100">
                     <Path 
-                        d = 'M 10 90 L 42.5 42.5 L 30 30 Q 60 40 50 20 Q 100 0 80 50 Q 60 40 70 70 L 57.5 57.5 L 10 90' strokeWidth="5" stroke="black" fill="none"
+                        d = 'M 10 90 L 42.5 42.5 L 30 30 Q 60 40 50 20 Q 100 0 80 50 Q 60 40 70 70 L 57.5 57.5 L 10 90' strokeWidth="5" stroke={colors[props.theme].primaryTextColor} fill="none"
                     /> 
                     {
                         props.pinned ? 
-                        <Path d = 'M 35 5 L 65 95' strokeWidth="10" stroke="black" fill="none"/>
+                        <Path d = 'M 35 5 L 65 95' strokeWidth="10" stroke={colors[props.theme].primaryTextColor} fill="none"/>
                         : null
                     }
                 </Svg>

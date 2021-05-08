@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react" ; 
+import React, {useContext, useState, useEffect} from "react" ; 
 import {View, ScrollView, Pressable, Image, Platform, Linking} from "react-native" ;
 import {observer} from "mobx-react-lite"
 import {SText, StyledMD} from "../components/Text" ; 
@@ -60,8 +60,9 @@ const ContactMethod = [
     }
 ]
 
-const ContactItem = observer((props)=>{
+const ContactItem = (props)=>{
     const [pressedIn, setPressedIn] = useState(false) ;
+
 
     return (
     <Pressable onPress={()=>{
@@ -77,7 +78,7 @@ const ContactItem = observer((props)=>{
             {
             hover => {
                 return <View style={{}}>
-                    <Image source={props.source} style={{width: 50, height: 50, tintColor:(hover || pressedIn) ? props.color : colors[props.theme].textPrimaryColor}} resizeMode='contain' />
+                    <Image source={props.source} style={{width: 50, height: 50, tintColor:(hover || pressedIn) ? props.color : colors[props.theme].primaryTextColor}} resizeMode='contain' />
                 </View>
             }}
         </Hoverable>
@@ -85,7 +86,7 @@ const ContactItem = observer((props)=>{
     
     )
 
-}) ;
+};
 
 export const Contact = observer((props)=>{
     const rootStore = useContext(RootStoreContext) ; 

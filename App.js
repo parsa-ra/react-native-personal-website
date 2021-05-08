@@ -32,7 +32,7 @@ const Drawer = createDrawerNavigator() ;
 const DrawerContent = observer((props)=>(
     <DrawerContentScrollView {...props}>
       { rootStore.portrait ? null : 
-        <DrawerItem  label= {({color, focused}) => (<PinSvg width={30} height={30} pinned={rootStore.drawerType == 'permanent' ? true : false}/>)} 
+        <DrawerItem  label= {({color, focused}) => (<PinSvg width={30} height={30} pinned={rootStore.drawerType == 'permanent' ? true : false} theme={rootStore.theme}/>)} 
         style={{
           flexDirection: 'row-reverse',
           justifyContent: 'center',
