@@ -67,3 +67,6 @@ web-build/
 tests/
 /assets/vids
 
+.next/
+next.config.js
+pages/

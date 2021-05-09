@@ -1,5 +1,5 @@
 import {Svg, Path, Circle, } from "react-native-svg" ;
-import {TouchableHighlight, View, StyleSheet} from "react-native" ; 
+import {TouchableHighlight, View, StyleSheet, Pressable} from "react-native" ; 
 import React, {useEffect, useContext, useState} from "react" ; 
 import {colors} from "../theme/Colors" ; 
 import {RootStoreContext} from "../env" ;
@@ -212,6 +212,46 @@ export const Mail = (props) => {
 
             </Svg>
         </View>
+    )
+
+}
+
+export const Menu = (props) => {
+    const [highlight, setHighlight] = useState(false) ; 
+
+    const m = 20 ; 
+    const w = 10 ;
+    const vs = (100 - 2*m - 3*w)/2 ;
+    const vh = 10 ;  
+
+    return (
+        <Pressable 
+            onPress={()=> props.onPressHandler() }
+            onPressIn={()=>setHighlight(true)}
+            onPressOut={()=>setHighlight(false)}
+            style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
+            <Hoverable>
+            {hover => (
+            <View style={[SvgStyles.container, 
+                {height: props.height, 
+                width: props.width, 
+                backgroundColor: hover || highlight ? colors[props.theme].linkActive : colors[props.theme].fillAreaColor,
+                }]}>
+                <Svg width="100%" height="100%" viewBox="0 0 100 100">
+                    <Path d = {`M ${vh} ${m} l ${100-2*vh} 0 M ${vh} ${m+vs+w} l ${100-2*vh} 0 M ${vh} ${m+2*(vs+w)} l ${100-2*vh} 0`}
+                        strokeWidth= {w}
+                        stroke={colors[props.theme].primary}
+                        fill="none"
+                    />
+                </Svg>
+            </View>
+            )}
+            </Hoverable>
+        </Pressable> 
     )
 
 }

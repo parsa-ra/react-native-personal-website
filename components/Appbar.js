@@ -4,10 +4,11 @@ import {colors} from "../theme/Colors";
 import {useNavigation} from "@react-navigation/native"
 import {navigationRef, toggleDrawer, navigate} from "./RootNavigation" ; 
 import {ImageButton} from "../components/ImageButton" ; 
-import {Logo, Sun, Moon} from "../components/Svgs" ; 
+import {Logo, Sun, Moon, Menu} from "../components/Svgs" ; 
 import {RootStoreContext} from "../env" ;
 import Hoverable from "../components/Hoverable" ;
 import { useContext } from 'react';
+import { PropTypes } from 'mobx-react';
 
 const drawerPic = require("../assets/images/drawer_pic.png") ; 
 
@@ -29,9 +30,10 @@ export const Appbar = ()=>{
             flexDirection: 'row',
             justifyContent: 'flex-start',
         }}> 
-            <ImageButton buttImage={drawerPic} onPressHandler={toggleDrawer} backgroundColor={colors[rootStore.theme].fillAreaColor} />
+            {/* <ImageButton buttImage={drawerPic} onPressHandler={toggleDrawer} backgroundColor={colors[rootStore.theme].fillAreaColor} accessibilityRole='menu' accessibilityLabel='Menu'/> */}
+            <Menu onPressHandler={toggleDrawer} height={30} width={30} theme={rootStore.theme}/>
             <Logo width={60} height={60} /> 
-        </View>
+        </View> 
 
         <TouchableHighlight onPress={() => rootStore.toggleColor()}>
             <Hoverable> 

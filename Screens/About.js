@@ -1,19 +1,25 @@
 import React, {useContext} from "react" ; 
-import {View, ScrollView} from "react-native" ;
+import {View, ScrollView, ActivityIndicator} from "react-native" ;
 import {observer} from "mobx-react-lite"
 import {SText, StyledMD} from "../components/Text" ; 
 import {Footer} from "../components/Footer" ;
 import {colors} from "../theme/Colors" ;
 import {generalStyles, RootStoreContext} from "../env" ; 
+import { useEffect, useState } from "react";
 
-const aboutMD = `# About
----
-
-Things about me ... 
-`
 
 export const About = observer((props)=>{
     const rootStore = useContext(RootStoreContext) ; 
+    let aboutMD = require('./MDs/About.md') ; 
+    const [text1, setText1] = useState(null); 
+
+    useEffect(()=> {
+        fetch(aboutMD).then((res)=>{
+            return res.text() ; 
+        }).then(text=>{ 
+            setText1(text) ;
+        })
+    }, [])
 
     return (
     <ScrollView contentInsetAdjustmentBehavior="automatic" 
@@ -25,12 +31,18 @@ export const About = observer((props)=>{
         width: rootStore.portrait ? "100%" : "80%",
         backgroundColor: colors[rootStore.theme].fillAreaColor,
     }, generalStyles.screenContainer]}>
-        <StyledMD>
-            {aboutMD} 
-        </StyledMD>
+        {text1 == null ?  
+            <ActivityIndicator/>
+        :
+            <StyledMD theme={rootStore.theme}>
+                {text1} 
+            </StyledMD> 
+        }
         {/* <Button title="Home" onPress={()=>{
                               rootStore.setNavStack("Home"); 
                               props.navigation.navigate("Home") ; }}/> */}
+
+        
     </View>
 
     <Footer /> 

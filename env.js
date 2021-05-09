@@ -12,7 +12,7 @@ export const generalStyles = StyleSheet.create({
     },  
     screenContainer: {
         flex: 1,
-        margin: 10, 
+        margin: 10,
         border: 10,
         borderRadius: 5,
         padding: 10,

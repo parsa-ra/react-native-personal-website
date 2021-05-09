@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import { Icon } from 'expo';
 import {Asset} from 'expo-asset' ; 
 import * as Font from "expo-font" ; 
 import AppLoading from 'expo-app-loading' ; 
@@ -47,7 +46,7 @@ const DrawerContent = observer((props)=>(
 
 const DrawerNav = observer(()=>(
   <Drawer.Navigator 
-    initialRouteName="Publications" 
+    initialRouteName="Home" 
     screenOptions={{
       background: colors[rootStore.theme].secondaryFillAreaColor,
       drawerType: rootStore.drawerType,
@@ -60,6 +59,7 @@ const DrawerNav = observer(()=>(
         fontSize: 20,
         color: colors[rootStore.theme].primaryTextColor,
       },
+      
       headerShown: false,
       drawerActiveBackgroundColor: colors[rootStore.theme].drawerActiveColor,
       drawerInactiveBackgroundColor: colors[rootStore.theme].drawerInactiveColor,
@@ -106,6 +106,9 @@ const DrawerNav = observer(()=>(
   useEffect(()=>{
     //setLoadingDone(true) ; 
     isReadyRef.current = false ; 
+    if(!rootStore.portrait){
+      rootStore.setDrawerType('permanent') ; 
+    }
   }, [])
   
   useEffect(()=>{
@@ -135,7 +138,7 @@ const DrawerNav = observer(()=>(
   };
   
   const _onApploadingFinish = () => {
-    console.log(colors[rootStore.theme].primary) ; 
+    //console.log(colors[rootStore.theme].primary) ; 
     setLoadingDone(true) ;
   }
 
@@ -175,7 +178,7 @@ const DrawerNav = observer(()=>(
       }
     }>
 
-    <ActivityIndicator size="large"/>  
+    <ActivityIndicator size="large" color={colors['light'].primary}/>  
     <AppLoading 
           startAsync= {_loadAssets}
           onFinish={ _onApploadingFinish } 

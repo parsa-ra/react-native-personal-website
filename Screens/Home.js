@@ -8,6 +8,7 @@ import { useContext } from "react";
 import {colors} from "../theme/Colors" ; 
 import {Footer} from "../components/Footer" ; 
 
+
 const styles = StyleSheet.create(
     {
         'header': {
@@ -24,15 +25,20 @@ const styles = StyleSheet.create(
     }
 )
 
-const HeaderMD = 
+const HomeHeaderMD = 
 `
 # Welcome
 I'm parsa and welcome to my website. 
+
 
 `
 
 const HomeContent = 
 `
+## About
+
+Fore more information follow up in [About](/en/about)
+
 ## Interests 
 ---
 
@@ -81,8 +87,8 @@ export const Home = observer(({navigation})=> {
                 flex:3,
                 padding: rootStore.portrait ? 20 : 40,
             }}>
-                <StyledMD>
-                    {HeaderMD}
+                <StyledMD theme={rootStore.theme}>
+                    {HomeHeaderMD}
                 </StyledMD>
             </View>
 
@@ -106,7 +112,7 @@ export const Home = observer(({navigation})=> {
         <View style={{
             padding: 10,
         }}>
-        <StyledMD>
+        <StyledMD theme={rootStore.theme}>
             {HomeContent} 
         </StyledMD>
         </View>

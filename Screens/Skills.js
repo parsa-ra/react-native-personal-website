@@ -58,12 +58,12 @@ const Data= {
         'C++':{
             freshness: 'high',
             level: 'pro',
-            addInfo: 'Every where, from UnrealEngine developing to playing around with FPrime',
+            addInfo: 'Used every where, UnrealEngine developing, playing around with FPrime writing native modules for android',
         },
         'C':{
             freshness: 'high',
             level: 'pro',
-            addInfo: 'mostly for embedded programming, ESP32'
+            addInfo: 'mostly for embedded programming like ESP32 and a bit of socket programming'
         },
         'C#':{
             freshness: 'high',
@@ -73,7 +73,7 @@ const Data= {
         'Python': {
             freshness: 'high',
             level: 'pro',
-            addInfo: 'You named it ...',
+            addInfo: 'Django, TensorFlow, PyTorch, ... ',
         },
         'Java': {
             freshness: 'high',
@@ -88,7 +88,7 @@ const Data= {
         'JavaScript': {
             freshness: 'high', 
             level: 'pro',
-            addInfo: 'every where, Node, React, React-Native, Expo, bare-WebAPI, ... '
+            addInfo: 'Every where, Node, React, React-Native, Expo, bare-WebAPI, ... '
         },
         'ShaderLanguages': {
             freshness: 'high',
@@ -99,30 +99,47 @@ const Data= {
             title: 'VHDL',
             freshness: 'low',
             level: 'mediocre',
-            addInfo: "",
+            addInfo: "Used primary to implement algorithms such as FFT onto FPGAs",
         }
     },
     'Software Development': {
         'Web-Services': {
             freshness: 'high',
             level: 'pro',
-            addInfo: '',
+            addInfo: `Fullstack SaaS developer, PWAs`,
         },
         'Game-Development': {
             freshness: 'high',
             level: 'mediocre',
-            addInfo: "Experience game-development using Unity, Unreal-Engine or W/O any engine at all from bare Shader programming"
+            addInfo: "Game-development using Unity, Unreal-Engine or W/O any engine at all from bare Shader programming"
         },
         "Embedded Systems": {
             freshness: 'low',
             level: 'mediocre',
-            addInfo: "Most 90s kids start they programming experience in [Atmel](https://atmel.com) area, my passion for embedded system still to date continues also I have some experiences using RTOS. ARM "
+            addInfo: `Most 90s kids start they programming experience with micro-controller programming in [Atmel](https://microchip.com) area, my passion for embedded systems still to date continues and evolved to using [RTOS](https://www.freertos.org/about-RTOS.html)`
         },
         "DApps" : {
             freshness: 'medium',
             level: 'medium',
-            addInfo: "Developing prototyping apps on etheruem's test net",
-        }
+            addInfo: "Developing prototype apps on etheruem's test net",
+        },
+        "Cross-Platform Software Development": {
+            freshness: 'low',
+            level: 'medium',
+            addInfo: `Developing cross-platform apps using Qt`
+        } 
+     },
+     'General Software Skills': {
+         'Version Control Systems': {
+             freshness: 'high',
+             level: 'medium',
+             addInfo: 'Working with Git on daily basis'
+         },
+         'Build Systems':{
+             freshness: 'high',
+             level: 'medium',
+             addInfo: 'Familiar with [Cmake](https://cmake.org), [Gradle](https://gradle.org), and a bit of [Bazel](https://bazel.build)'
+         }
      }
 }
 
@@ -152,15 +169,32 @@ const SkillCard = observer((props) => {
                 {props.title}
             </SText>
         </View>
-        <View style={{flex: 2}}>
-
-        </View>
-        <View style={{flex:2}}>
-            <StyledMD>
+        <View style={{
+            flex: 1,
+            flexDirection: 'row',
+        }}>
+        <View style={{flex:3}}>
+            <StyledMD theme={props.theme}>
                 {props.data.addInfo}    
             </StyledMD>
         </View>
 
+        <View style={{
+            flex: 1,
+            borderLeftColor: colors[props.theme].border,
+            borderLeftWidth: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}>
+            <SText style={{fontSize: 14, color: colors[props.theme].primaryTextColor}}>
+                Freshness: {props.data.freshness}
+            </SText>
+            <SText style={{fontSize: 14, color: colors[props.theme].primaryTextColor}}>
+                Level: {props.data.level}
+            </SText>
+        </View>
+
+        </View> 
 
     </View>
 }) ;
@@ -260,7 +294,7 @@ export const SkillFlexController = (props) => {
 }
 
 const _renderItem = ({item}) => {
-    console.log(item) ;
+    //console.log(item) ;
     return <SectionContainer title={item.title} data={item.data}/>
 } 
 
@@ -280,7 +314,7 @@ export const Skills = observer((props) => {
         padding: 10,
     }, generalStyles.screenContainer]}>
 
-        <StyledMD>
+        <StyledMD theme={rootStore.theme}>
             {SkillsScreenHeaderMD}
         </StyledMD>
 

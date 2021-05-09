@@ -19,6 +19,9 @@ export const RootStore = types.model({
                 self.drawerType = 'permanent' ;
             }
         },
+        setDrawerType(type){
+            self.drawerType = type ; 
+        },
         toggleColor(){
             if(self.theme == "dark") {
                 self.theme = "light" ; 

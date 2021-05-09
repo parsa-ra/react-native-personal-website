@@ -1,7 +1,7 @@
 export const colors = {
     'light': {
         'primary' : '#12516e', 
-        'secondary' : '#541288', 
+        'secondary' : '#4388a8', 
         'primaryTextColor': '#515151',
         'secondaryTextColor': '#676767',
         'primaryContrastTextColor': '#eaeaea',
@@ -10,13 +10,14 @@ export const colors = {
         'disabled': '#e3e3e3',
         'secondaryFillAreaColor': '#dfdfdf',
         'border': '#aeaeae',
-        'link': "#cce7ff",
+        'link': "#cce7ee",
+        'linkActive': '#ddf8ff',
         'drawerActiveColor': "#d6edff",
         'drawerInactiveColor': "#ebebeb"
     },
     'dark': {
-        'primary' : '#5678aa',
-        'secondary' : '#541288',
+        'primary' : '#12516e',
+        'secondary' : '#4388a8',
         'primaryTextColor': '#e2e2e2',
         'secondaryTextColor': '#eeeeee',
         'primaryContrastTextColor': '#eaeaea',
@@ -25,7 +26,8 @@ export const colors = {
         'disabled': '#747474',
         'secondaryFillAreaColor': '#575757',
         'border': '#eaeaea',
-        'link': "#88a2bb",
+        'link': "#4388a8",
+        'linkActive': "#327797",
         'drawerActiveColor': "#88a2bb",
         'drawerInactiveColor': "#aeaeae"
     }

@@ -103,7 +103,7 @@ export const Contact = observer((props)=>{
     }, generalStyles.screenContainer]}>
 
         <View>
-        <StyledMD>
+        <StyledMD theme={rootStore.theme}>
             {contactMD} 
         </StyledMD>
         </View >

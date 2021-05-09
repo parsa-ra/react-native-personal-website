@@ -25,7 +25,7 @@ const PublicationArray = [
         pdf: 'none',
         bib: 'none', 
         description: `In this article we propose an effective yet efficient differentiable computational graph to stabilize videos captured in devices equipped with gyroscope. We can't publish additional infos at this time due to possible violation of ICCV's rules. here you can see an example output of our algorithm.`,
-        videoSource: require("../assets/vids/1.webm"),
+        videoSource: require('../assets/vids/iccv21-1.webm'),//`https://parano.arvanvod.com/V6jkaZoDwZ/EKg1kd2Nx6/origin_FsWCEgGQYiGE4NxWn70miVWv4qcgpk9gtzpGbesz.mp4`,
 
     },
 ] ; 
@@ -58,7 +58,6 @@ const SearchBar = (props) => {
                 ref={textInputRef}
                 placeholder= {`Search in Articles ${props.disabled ? "(Disabled)" : ""}`}
                 placeholderTextColor={props.disabled ? colors[rootStore.theme].disabled : colors[rootStore.theme].border }
-                autoCapitalize="words"
             />
         </View> 
     </Pressable>
@@ -111,7 +110,7 @@ const PublicationCard = (props) => {
                         padding: 10,
                     }
                     }>
-                        <StyledMD>
+                        <StyledMD theme={props.theme}>
                             {props.description}
                         </StyledMD> 
                     </View>
@@ -159,8 +158,8 @@ const PublicationCard = (props) => {
                             useNativeControls
                             resizeMode="contain"
                             isLooping={false}
-                            onError={err => console.log(err) }
-                            onPlaybackStatusUpdate={status => console.log(status)}
+                            onError={err => console.error(err) }
+                            //onPlaybackStatusUpdate={status => console.log(status)}
                         />
                     : 
                     null
@@ -196,7 +195,7 @@ export const Publications = observer((props) => {
             width: rootStore.portrait ? "100%" : "80%",
             backgroundColor: colors[rootStore.theme].fillAreaColor,
         }, generalStyles.screenContainer]}>
-            <StyledMD>
+            <StyledMD theme={rootStore.theme}>
                 {PublicationScreenHeader}
             </StyledMD>
 

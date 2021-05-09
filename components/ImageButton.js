@@ -14,6 +14,8 @@ export const ImageButton = (props) => {
      underlayColor = {colors['light'].border}
      disabled = {props.disabled}  
      onPress={() => props.onPressHandler()} 
+     accessibilityRole={props.accessibilityRole}
+     accessibilityLabel={props.accessibilityLabel}
     >
         <View style={[{
             flexDirection: 'row',
@@ -24,7 +26,7 @@ export const ImageButton = (props) => {
         }, {...props.viewStyle}]}>
 
             {props.buttImage != "none" ? 
-                <Image source={props.buttImage} style={{width:30, height:30}}/> :
+                <Image source={props.buttImage} style={{width:props.width, height:props.height}} resizeMode="contain" resizeMethod="resize"/> :
             null
             }
 
@@ -45,6 +47,8 @@ ImageButton.defaultProps = {
     buttImage: "none",
     disabled: false,
     theme: 'light',
+    width: 30,
+    height: 30,
 }
 
 
