@@ -42,14 +42,11 @@ Fore more information follow up in [About](/en/about)
 ## Interests 
 ---
 
-I love many things in technology sector, here are few of them that I currently consider to peruse for the rest of my life. Since this specific sector is extremely volatile with respect ot time it may change rapidly, so keep tuning in.
 
-
+* Automated Learning: AutoML, DARTS, ... 
 * Computational Systems (e.g. Computational Photography, Computational Dynamic Modeling, ...)
-* ML, AI: who doesn't?
 
-# Welcome
-I'm parsa and welcome to my website. 
+
 ` ; 
 
 

@@ -24,8 +24,8 @@ const PublicationArray = [
         title: 'ICCV 2021 Submission',
         pdf: 'none',
         bib: 'none', 
-        description: `In this article we propose an effective yet efficient differentiable computational graph to stabilize videos captured in devices equipped with gyroscope. We can't publish additional infos at this time due to possible violation of ICCV's rules. here you can see an example output of our algorithm.`,
-        videoSource: require('../assets/vids/iccv21-1.webm'),//`https://parano.arvanvod.com/V6jkaZoDwZ/EKg1kd2Nx6/origin_FsWCEgGQYiGE4NxWn70miVWv4qcgpk9gtzpGbesz.mp4`,
+        description: `In this article we propose an effective yet efficient differentiable computational graph to stabilize videos captured in devices equipped with gyroscope. here you can see an example output of our algorithm.`,
+        videoSource: `https://parano.arvanvod.com/V6jkaZoDwZ/EKg1kd2Nx6/origin_FsWCEgGQYiGE4NxWn70miVWv4qcgpk9gtzpGbesz.mp4`,
 
     },
 ] ; 

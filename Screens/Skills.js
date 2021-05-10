@@ -106,7 +106,7 @@ const Data= {
         'Web-Services': {
             freshness: 'high',
             level: 'pro',
-            addInfo: `Fullstack SaaS developer, PWAs`,
+            addInfo: `Fullstack SaaS design and developments, PWAs`,
         },
         'Game-Development': {
             freshness: 'high',
