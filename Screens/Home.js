@@ -8,27 +8,12 @@ import { useContext } from "react";
 import {colors} from "../theme/Colors" ; 
 import {Footer} from "../components/Footer" ; 
 
-
-const styles = StyleSheet.create(
-    {
-        'header': {
-            fontWeight: '600',
-            fontSize: 35, 
-            textAlignment: 'left',
-        },
-        'main': {
-            fontWeight: '400',
-            fontSize: 20,
-            textAlignment: 'left',
-            paddingLeft: 20,
-        },
-    }
-)
-
 const HomeHeaderMD = 
 `
 # Welcome
 I'm parsa and welcome to my website. 
+
+Recently I received my M.Sc degree in EE from Sharif University of Technology supervised by [Dr. Amini](http://sharif.ir/~aamini/). Currently I am looking for PHD positions mainly in Computer vision perception and AI.
 
 
 `
@@ -36,15 +21,21 @@ I'm parsa and welcome to my website.
 const HomeContent = 
 `
 ## About
+---
 
 Fore more information follow up in [About](/en/about)
 
 ## Interests 
 ---
+Here you can find my main research interests.
 
+* ### Automated Learning: AutoML, DARTS, ...
 
-* Automated Learning: AutoML, DARTS, ... 
-* Computational Systems (e.g. Computational Photography, Computational Dynamic Modeling, ...)
+I think adaptable and automated neural network will be one of the key ingredients to true AI)
+
+* ### Computational Systems (e.g. Computational Photography, Computational Dynamic Modeling, ...) 
+
+To better perceive and control our environment using building blocks that we have (i.e. computers).
 
 
 ` ; 

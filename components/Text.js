@@ -5,7 +5,7 @@ import {colors} from "../theme/Colors" ;
 import { useContext } from "react";
 import Hoverable from "./Hoverable";
 import {RootStoreContext} from "../env" ; 
-import observer from "mobx-react-lite" ; 
+import observer from "mobx-react-lite" ;    
 
 // Make sure to feed it Stylesheet type props
 export const SText = (props) => {
@@ -73,7 +73,34 @@ export const StyledMD = (props) => {
                 )
                 } 
             </Hoverable>
-        )
+        ),
+        heading2: (node, children, parent, styles) => (
+            <Hoverable key={node.key}>
+                { hover => (
+                <View 
+                    style=
+                    {[hover && {
+                        borderLeftWidth: 2,
+                        borderLeftColor: colors[props.theme].border,
+                    }, {
+                        marginBottom: 5,
+                    }]}>
+                    <Text style={[styles.heading2, {
+                        
+                    }]}>
+                        {children} 
+                    </Text>
+                    {
+                        // hover ? <View style={{position: 'absolute', }}> 
+                        //     <Text>
+                        //         Test
+                        //     </Text>
+                        // </View> : null 
+                    }
+                </View>
+                )
+                } 
+            </Hoverable>),
     
     }
 
@@ -96,6 +123,12 @@ export const StyledMD = (props) => {
             fontFamily: 'Ubuntu',
             fontWeight: '800',
             color: colors[props.theme].primaryTextColor,
+        },
+        heading2: {
+            fontWeight: '700',
+        },
+        heading3: {
+            fontWeight: '600',
         },
         hr: {
             //color: colors[props.theme].primaryTextColor,

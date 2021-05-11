@@ -20,3 +20,5 @@ export const generalStyles = StyleSheet.create({
         justifyContent: "flex-start"
     }
 })
+
+export const screenLinks = ["en/home", "en/about", "en/publications", "en/contact", "en/skills"] ;

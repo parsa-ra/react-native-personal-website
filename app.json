@@ -1,9 +1,9 @@
 {
-  "name": "Parsa's Website",
-  "displayName": "Parsa's Website",
+  "name": "Parsa",
+  "displayName": "Parsa",
   "expo": {
-    "name": "Parsa's Website",
-    "slug": "Parsa's Website",
+    "name": "Parsa",
+    "slug": "Parsa",
     "version": "1.0.0",
     "icon": "./assets/images/icon.png",
     "description": "Parsa Rahimi's Personal Website. My research and development interests, My history, projects which I involved with them, hobbies and many more things about me presented in this website",

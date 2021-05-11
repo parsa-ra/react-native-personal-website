@@ -1,15 +1,15 @@
 {
   "main": "index.js",
-
   "homepage": "https://parsa-ra.github.io/",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "preweb": "node pre_build.js",
     "web": "expo start --web",
     "start": "react-native start",
     "test": "jest",
-    "deploy": "gh-pages -d web-build",
-    "predeploy": "expo build:web" 
+    "deploy": "gh-pages -r git@github.com:parsa-ra/parsa-ra.github.io.git deploy -d web-build",
+    "predeploy": "node pre_build.js && expo build:web && node spa-github-pages.js"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
@@ -49,6 +49,7 @@
     "babel-jest": "~25.2.6",
     "gh-pages": "^3.1.0",
     "jest": "~25.2.6",
+    "node-html-parser": "^3.2.0",
     "react-test-renderer": "~16.13.1",
     "webpack-bundle-analyzer": "^4.4.1"
   },
