@@ -35,7 +35,7 @@ export const Footer = (props) => {
                 <SText style={{color: colors[rootStore.theme].primaryTextColor}}>Source available at </SText>
                 <ImageButton buttImage={require("../assets/images/github.png")} width={20} height={20} onPressHandler={()=>{
                     if(Platform.OS == 'web'){
-                        if(window){window.open("https://github.com/parsa-ra") ;} 
+                        if(window){window.open("https://github.com/parsa-ra/react-native-personal-website") ;} 
                     }
                 }}/>
                 <SText style={{color: colors[rootStore.theme].primaryTextColor}}>do whatever you like with it XD ... </SText>
