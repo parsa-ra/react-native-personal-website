@@ -1,12 +1,10 @@
 {
     "destination_path": "./web-build",
-    "routes": ["en/home", "en/about", "en/contact", "en/publications", "en/skills"],
-    "domain": "https://parsa-ra.github.io/",
     "copy_404":{
         "exec" : true,
         "source_path": "./"
     },
-    "override_index":{
+    "override_index_spa_script":{
         "exec" : true
     },
     "create_robot_and_sitemap": {
@@ -15,5 +13,9 @@
     "copy_google_search_console_proof":{
         "exec" : true,
         "path" : "tests/google58790492c5b72c91.html"
+    },
+    "copy_google_analytic_tag": {
+        "exec" : true,
+        "data" : "<!-- Global site tag (gtag.js) - Google Analytics --><script async src='https://www.googletagmanager.com/gtag/js?id=G-DYMBJ3PFJX'></script><script> window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-DYMBJ3PFJX');</script>"
     }
 }

@@ -10,6 +10,15 @@ import {DropDownIndicator, Magnifier} from "../components/Svgs" ;
 import { useEffect } from "react";
 import { Video } from "expo-av";
 
+
+/**
+ * 
+ * 
+ * START EDITING HERE
+ * 
+ * 
+ */
+
 const PublicationScreenHeader = 
 `# Publications
 ---
@@ -18,7 +27,7 @@ In middle of standing on the shoulder of giants ...
 
 `;
 
-
+// Put your publication in Array like following. 
 const PublicationArray = [
     {
         title: 'ICCV 2021 Submission',
@@ -29,6 +38,12 @@ const PublicationArray = [
 
     },
 ] ; 
+
+/**
+ * 
+ *  TILL HERE
+ * 
+ */
 
 const SearchBar = (props) => {
     const rootStore = useContext(RootStoreContext) ;

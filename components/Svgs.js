@@ -20,7 +20,7 @@ export const DropDownIndicator = (props)=> {
 
     useEffect(()=>{
         currentYs = props.opened ? pointYsUp :  pointYsDown ; 
-        console.log(currentYs) ; 
+        //console.log(currentYs) ; 
     }, [props.opened]) ;
 
     // useEffect(()=> {

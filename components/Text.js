@@ -123,6 +123,8 @@ export const StyledMD = (props) => {
             fontFamily: 'Ubuntu',
             fontWeight: '800',
             color: colors[props.theme].primaryTextColor,
+            margin: 5,
+            border: 5,
         },
         heading2: {
             fontWeight: '700',
@@ -132,7 +134,8 @@ export const StyledMD = (props) => {
         },
         hr: {
             //color: colors[props.theme].primaryTextColor,
-            backgroundColor: colors[props.theme].primaryTextColor, 
+            backgroundColor: colors[props.theme].primaryTextColor,  
+            margin: 10,
         }
     })
     

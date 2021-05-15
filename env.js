@@ -21,4 +21,4 @@ export const generalStyles = StyleSheet.create({
     }
 })
 
-export const screenLinks = ["en/home", "en/about", "en/publications", "en/contact", "en/skills"] ;
+export const screenLinks = require("./env.json").screens ; 

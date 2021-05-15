@@ -45,6 +45,7 @@ const parseDataToArrayLike = (data) => {
     return arrayLike ; 
 }
 
+
 const SkillsScreenHeaderMD = `
 # Skills
 ---
@@ -211,7 +212,7 @@ const _getItemDetails = (data, index) => {
     };
 }
 
-export const SectionContainer = observer((props) => {
+const SectionContainer = observer((props) => {
     const [opened, setOpened] = useState(true) ;
     const rootStore = useContext(RootStoreContext) ;
     
@@ -284,7 +285,7 @@ SectionContainer.defaultProps = {
     title: "none"
 }
 
-export const SkillFlexController = (props) => {
+const SkillFlexController = (props) => {
 
     return <View style={{
 

@@ -9,6 +9,12 @@ import {Mail} from "../components/Svgs" ;
 import Clipboard from "expo-clipboard" ;
 import Hoverable from "../components/Hoverable" ;
 
+
+/* 
+
+    START EDITING HERE
+
+*/
 const contactMD = `# Contact
 ---
 
@@ -17,11 +23,11 @@ The ways to contact or follow me ...
 
 const ContactMethod = [
     {
-        title: 'Twitter',
-        icon: require('../assets/images/twitter.png'),
-        data: ['https://twitter.com/_Parano_'] ,
-        role: 'link',
-        color: ' #1da1f2'
+        title: 'Twitter',                                 // name 
+        icon: require('../assets/images/twitter.png'),    // Image use require or an url,
+        data: ['https://twitter.com/_Parano_'] ,          // link of the contact method
+        role: 'link',                                     // accessibility link
+        color: ' #1da1f2'                                 // tint
     },
     {
         title: 'Mail',
@@ -54,11 +60,18 @@ const ContactMethod = [
     {
         title: 'Spotify',
         icon: require("../assets/images/spotify.png"),
-        data: ["link"],
+        data: ["https://open.spotify.com/user/1nbzchhkj44xayshrbv236nkg?si=giEnbX-XQCGdWZ_JV6zBOQ"],
         role: 'link',
         color: '#1db954',
     }
 ]
+
+/* 
+
+ UNTIL HERE
+
+*/
+
 
 const ContactItem = (props)=>{
     const [pressedIn, setPressedIn] = useState(false) ;

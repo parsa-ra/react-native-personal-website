@@ -8,22 +8,30 @@ import { useContext } from "react";
 import {colors} from "../theme/Colors" ; 
 import {Footer} from "../components/Footer" ; 
 
+const env = require("../env.json")
+
+/**
+ * 
+ * 
+ *  START EDITING HERE 
+ * 
+ */
+
 const HomeHeaderMD = 
 `
 # Welcome
-I'm parsa and welcome to my website. 
-
-Recently I received my M.Sc degree in EE from Sharif University of Technology supervised by [Dr. Amini](http://sharif.ir/~aamini/). Currently I am looking for PHD positions mainly in Computer vision perception and AI.
-
+I'm parsa rahimi, a researcher and developer in area of Artificial Intelligence, Computer Vision Perception, Dapps and Dynamic Networks. 
+For more information follow up in [About](${env.domain}en/about), [Skills](${env.domain}en/skills) and [Publications](${env.domain}en/pubs).
 
 `
 
 const HomeContent = 
 `
-## About
+## Introduction
 ---
+Recently I received my M.Sc degree in EE from Sharif University of Technology supervised by [Dr. Arash Amini](http://sharif.ir/~aamini/). Currently I am looking for PHD positions mainly in Computer perception and AI.
 
-Fore more information follow up in [About](/en/about)
+
 
 ## Interests 
 ---
@@ -39,6 +47,12 @@ To better perceive and control our environment using building blocks that we hav
 
 
 ` ; 
+
+/**
+ * 
+ * TILL HERE 
+ * 
+ */
 
 
 export const Home = observer(({navigation})=> {

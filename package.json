@@ -7,6 +7,7 @@
     "preweb": "node pre_build.js",
     "web": "expo start --web",
     "start": "react-native start",
+    "build": "node pre_build.js && expo build:web", 
     "test": "jest",
     "deploy": "gh-pages -r git@github.com:parsa-ra/parsa-ra.github.io.git deploy -d web-build",
     "predeploy": "node pre_build.js && expo build:web && node spa-github-pages.js"

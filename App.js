@@ -11,11 +11,14 @@ import { observer } from 'mobx-react-lite';
 import {RootStore} from "./Stores/RootStore" ; 
 import {NavigationContainer, DefaultTheme} from "@react-navigation/native" ; 
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem} from "@react-navigation/drawer" ; 
-import {Home, About, Skills, Publications, Contact} from "./Screens" ;
 import {isReadyRef, navigationRef} from "./components/RootNavigation" ; 
 import {window, screen, RootStoreContext} from "./env" ; 
 import {colors} from "./theme/Colors" ; 
 import {PinSvg} from "./components/Svgs" ; 
+import * as Screens from "./Screens" ;
+
+const env = require("./env.json") ; 
+
 
 export const rootStore = RootStore.create({
   navStack: "home",
@@ -68,11 +71,16 @@ const DrawerNav = observer(()=>(
      <DrawerContent {...props} /> 
     )}
     >
-    <Drawer.Screen name="Home" component={Home}  />
-    <Drawer.Screen name="About" component={About} />
-    <Drawer.Screen name="Skills" component={Skills} />
-    <Drawer.Screen name="Publications" component={Publications} /> 
-    <Drawer.Screen name="Contact" component={Contact} />
+
+    {/* Screens Loaded Here */}
+    {Object.keys(Screens).map((screen)=> <Drawer.Screen key={screen} name={screen} component={Screens[screen]} />)}
+    {/* <Drawer.Screen name="Home" component={Screens.Home}  />
+    <Drawer.Screen name="About" component={Screens.About} />
+    <Drawer.Screen name="Skills" component={Screens.Skills} />
+    <Drawer.Screen name="Publications" component={Screens.Publications} /> 
+    <Drawer.Screen name="Contact" component={Screens.Contact} /> */}
+
+
   </Drawer.Navigator>
 ))
 
