@@ -7,6 +7,9 @@ import {RootStoreContext, generalStyles} from "../env" ;
 import { useContext } from "react";
 import {colors} from "../theme/Colors" ; 
 import {Footer} from "../components/Footer" ; 
+import {ContactMethod, ContactItem} from "./Contact" ;
+
+const contactMethodIndexInHome = ['Mail', 'LinkedIn', 'Twitter'] ; 
 
 const env = require("../env.json")
 
@@ -37,7 +40,7 @@ Recently I received my M.Sc degree in EE from Sharif University of Technology su
 ---
 Here you can find my main research interests.
 
-* ### Automated Learning: AutoML, DARTS, ...
+* ### Automated Learning: AutoML(NAS, HPO, ...)
 
 I think adaptable and automated neural network will be one of the key ingredients to true AI)
 
@@ -86,7 +89,7 @@ export const Home = observer(({navigation})=> {
         }}>
 
             <View style={{
-                flex:3,
+                flex:5,
                 padding: rootStore.portrait ? 20 : 40,
             }}>
                 <StyledMD theme={rootStore.theme}>
@@ -95,7 +98,7 @@ export const Home = observer(({navigation})=> {
             </View>
 
             <View style={{
-                flex:1,
+                flex:2,
                 //backgroundColor: colors[rootStore.theme].primary,
                 paddingLeft: rootStore.portrait ? 10 : 20,
                 paddingRight: rootStore.portrait ? 10 : 20,
@@ -103,10 +106,23 @@ export const Home = observer(({navigation})=> {
                 borderLeftWidth: 1,
                 borderLeftColor: colors[rootStore.theme].border,
                 alignItems: 'center',
-                flexDirection: 'row',
+                flexDirection: 'column',
                 justifyContent: 'center',
             }}>
-                <Image source={require("../assets/images/mypic.jpeg")} style={{width: "100%", height: "100%", borderRadius: 10}} resizeMode='contain'/>
+                <Image source={require("../assets/images/mypic.jpeg")} style={{borderRadius: 10, width: '100%', height: undefined, flex: 4, aspectRatio: 1}} resizeMode='contain'/>
+                <View style={{
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flex: 1,
+                }}>
+                    {ContactMethod.map((item) => {
+                        if(contactMethodIndexInHome.indexOf(item.title) != -1) {
+                            return <ContactItem key={item.title} source={item.icon} color={item.color} data={item.data} theme={rootStore.theme} width={20} height={20}/>
+                        }
+                    })}
+                </View>
             </View>
 
         </View>

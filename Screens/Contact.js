@@ -21,7 +21,7 @@ const contactMD = `# Contact
 The ways to contact or follow me ...  
 `
 
-const ContactMethod = [
+export const ContactMethod = [
     {
         title: 'Twitter',                                 // name 
         icon: require('../assets/images/twitter.png'),    // Image use require or an url,
@@ -73,7 +73,7 @@ const ContactMethod = [
 */
 
 
-const ContactItem = (props)=>{
+export const ContactItem = (props)=>{
     const [pressedIn, setPressedIn] = useState(false) ;
 
 
@@ -91,7 +91,7 @@ const ContactItem = (props)=>{
             {
             hover => {
                 return <View style={{}}>
-                    <Image source={props.source} style={{width: 50, height: 50, tintColor:(hover || pressedIn) ? props.color : colors[props.theme].primaryTextColor}} resizeMode='contain' />
+                    <Image source={props.source} style={{width: props.width ? props.width : 50, height: props.height ? props.height : 50, tintColor:(hover || pressedIn) ? props.color : colors[props.theme].primaryTextColor}} resizeMode='contain' />
                 </View>
             }}
         </Hoverable>

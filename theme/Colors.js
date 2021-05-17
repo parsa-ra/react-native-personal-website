@@ -12,7 +12,7 @@ export const colors = {
         'border': '#aeaeae',
         'link': "#cce7ee",
         'linkActive': '#ddf8ff',
-        'drawerActiveColor': "#d6edff",
+        'drawerActiveColor': "#bbe7dd",
         'drawerInactiveColor': "#ebebeb"
     },
     'dark': {

@@ -113,6 +113,7 @@ export const StyledMD = (props) => {
             fontFamily: 'Ubuntu',
             fontSize: 15,
             lineHeight: 25,
+            margin: 10, // same as hr's margin
             color: colors[props.theme].primaryTextColor,
         },
         em :{
