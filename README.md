@@ -36,11 +36,12 @@ The configuration options are in `spa-github-pages-config.json`.
 The execution of each option is depicted by `exec` member, For example if someone don't want to copy the `404.html` just needs to set the `exec` to `false`.
 
 ### Description: 
-* `destination_path`: It's the build path of the expo's web port, default is "./web-build",
+* `destination_path`: It's the build path of the Expos web port, default is "./web-build",
 * `copy_404`: Will copy the modified 404.html described [here](https://github.com/rafgraph/spa-github-pages) to the build directory. REQUIRED for Github Pages
 * `override_index_spa_script`: Will add linking handle to the `index.html` build generated using `expo`. "REQUIRED" for Github Pages.
-* `create_robot_and_sitemap`: Will create and copy `robot.txt` and `sitemap.txt` for Google's crawlers.
-* `copy_google_search_console_proof`: When you sign in to the Google's Search Console in order to proof that you own this to be deployed web site google will give you an `html` proof file. in this case add the path to that file it will copy that file to the final serve directory before deployment.
-* `copy_google_analytic_tag`: Like before entry in order to proof that the website owned by you Google will give you an script tag that is required to be added to the final html. populate you given script to the `data` member of this entry or just populate the `id` which is a unique string depicted for your site in the form of `G-XXXXXXX`.
+* `create_robot_and_sitemap`: Will create and copy `robot.txt` and `sitemap.txt` for Googles crawlers.
+* `copy_google_search_console_proof`: When you sign in to the Googles Search Console in order to proof that you own this to be deployed web site google will give you an `html` proof file. in this case add the path to that file it will copy that file to the final serve directory before deployment.
+* `copy_google_analytic_tag`: Like previous entry, in order to proof that the website is owned by you Google will give you an script tag that is required to be added to the final html. populate your given script(From Googles Search Console) to the `data` member of this entry or just populate the `id` which is a unique string depicted for your site in the form of `G-XXXXXXX`.
 
-A bit of Gotcha, when submitting the `sitemap.txt` in the `Google's Search Console` it doesn't make any effect(I waited about 4 days), you should manually set the links in the `URL Inspector` 
+A bit of Gotcha, when submitting the `sitemap.txt` in the `Googles Search Console` it doesn't make any effect(I waited about 4 days), you should manually set the links in the `URL Inspector`
+Update: The `sitemap` kick in after about 7 days, so if you have the time just wait about a week and everything will be fine witouht adding URLs manually.
