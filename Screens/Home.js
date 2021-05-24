@@ -32,7 +32,7 @@ const HomeContent =
 `
 ## Introduction
 ---
-Recently I received my M.Sc degree in EE from Sharif University of Technology supervised by [Dr. Arash Amini](http://sharif.ir/~aamini/). Currently I am looking for PHD positions mainly in Computer perception and AI.
+Recently I received my M.Sc degree in EE from Sharif University of Technology supervised by Dr. Arash Amini. Currently I am looking for PHD positions mainly in Computer perception and AI.
 
 
 

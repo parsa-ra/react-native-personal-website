@@ -55,6 +55,17 @@ Here you can find some of the major skills that I've learned through out my year
 `
 
 const Data= {
+    'Languages':{
+        'Persian': {
+            addInfo: 'Native',
+        },
+        'English U.S': {
+            addInfo: '90%',
+        },
+        'Turkish-Azerbaijani': {
+            addInfo: '50%',
+        }
+    },
     'Programming Languages':{
         'C++':{
             freshness: 'high',
@@ -84,7 +95,7 @@ const Data= {
         'Rust': {
             freshness: 'medium',
             level: 'mediocre',
-            addInfo: 'use for lightning-fast Actix web-framework',
+            addInfo: 'Used for lightning-fast Actix web-framework',
         },
         'JavaScript': {
             freshness: 'high', 
@@ -122,7 +133,7 @@ const Data= {
         "DApps" : {
             freshness: 'medium',
             level: 'medium',
-            addInfo: "Developing prototype apps on etheruem's test net",
+            addInfo: "Developing prototype dapps using solidity",
         },
         "Cross-Platform Software Development": {
             freshness: 'low',
@@ -133,14 +144,31 @@ const Data= {
      'General Software Skills': {
          'Version Control Systems': {
              freshness: 'high',
-             level: 'medium',
+             level: 'mediocre',
              addInfo: 'Working with Git on daily basis'
          },
          'Build Systems':{
              freshness: 'high',
-             level: 'medium',
+             level: 'mediocre',
              addInfo: 'Familiar with [Cmake](https://cmake.org), [Gradle](https://gradle.org), and a bit of [Bazel](https://bazel.build)'
          }
+     },
+     'Database': {
+        'Redis': {
+            freshness: 'low',
+            level: 'high',
+            addInfo: 'Caching stuff'
+        },
+        'Non-SQL': {
+            freshness: 'medium',
+            level: 'mediocre',
+            addInfo: 'Primary I worked with MongoDB specifically its GridFS functionality'
+        },
+        'SQL': {
+            freshness: 'low',
+            level: 'mediocre',
+            addInfo: 'MySQL and SQLite'
+        },
      }
 }
 
@@ -180,6 +208,7 @@ const SkillCard = observer((props) => {
             </StyledMD>
         </View>
 
+        {props.data.freshness || props.data.level ? 
         <View style={{
             flex: 1,
             borderLeftColor: colors[props.theme].border,
@@ -187,13 +216,15 @@ const SkillCard = observer((props) => {
             justifyContent: 'center',
             alignItems: 'center',
         }}>
+            {props.data.freshness ? 
             <SText style={{fontSize: 14, color: colors[props.theme].primaryTextColor}}>
                 Freshness: {props.data.freshness}
-            </SText>
+            </SText> : null }
+            {props.data.level ? 
             <SText style={{fontSize: 14, color: colors[props.theme].primaryTextColor}}>
                 Level: {props.data.level}
-            </SText>
-        </View>
+            </SText> : null}
+        </View> : null } 
 
         </View> 
 
@@ -202,6 +233,10 @@ const SkillCard = observer((props) => {
 
 SkillCard.defaultProps = {
     borderColor: colors['light'].border ,
+    data: {
+        'freshness': null,
+        'level': null,
+    }
 }
 
 const _getItemDetails = (data, index) => {

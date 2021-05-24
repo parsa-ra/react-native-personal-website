@@ -27,6 +27,7 @@ export const rootStore = RootStore.create({
   drawerType: 'front',
   theme: 'light',
   keyboardHidden: true,
+  lang: 'en',
 }) ; 
 
 const Drawer = createDrawerNavigator() ; 
@@ -161,11 +162,11 @@ const DrawerNav = observer(()=>(
         <NavigationContainer 
           theme={navTheme}
           linking={{config:{screens:{
-            "Home": "en/home",
-            "About": "en/about",
-            "Skills": "en/skills",
-            "Publications": "en/pubs",
-            "Contact": "en/contact",
+            "Home": `${rootStore.lang}/home`,
+            "About": `${rootStore.lang}/about`,
+            "Skills": `${rootStore.lang}/skills`,
+            "Publications": `${rootStore.lang}/pubs`,
+            "Contact": `${rootStore.lang}/contact`,
           }}}} 
           onReady={()=>{isReadyRef.current = true;}}
           ref={navigationRef}>

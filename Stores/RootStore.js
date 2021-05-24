@@ -7,6 +7,7 @@ export const RootStore = types.model({
     drawerType: types.string,
     theme: types.union(types.literal('light'), types.literal('dark')),
     keyboardHidden: types.boolean,
+    lang: types.union(types.literal('en'), types.literal('fa')),
 }).actions((self)=>{
     return {
         setNavStack(screen) {

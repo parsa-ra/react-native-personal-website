@@ -8,16 +8,16 @@
 Courses which I attend or take as a student.
 
 ### Master Courses: 
-* Stochastic Processes              Taken   
-* Statistical Learning              Taken   
-* Information Theory                Taken   
-* Deep Learning                     Taken   
-* Compressed Sensing                Attend  
-* Computer Vision                   Taken   
-* Advanced Comm                     Taken
-* Computational Genomics            Attend
-* BlockChain Foundation             Taken
-* Software Defined Networks         Attend
+* Stochastic Processes              Take  
+* Statistical Learning              Take   
+* Information Theory                Take   
+* Deep Learning                     Take   
+* Compressed Sensing                Audit  
+* Computer Vision                   Take   
+* Advanced Comm                     Take
+* Computational Genomics            Audit
+* BlockChain Foundation             Take
+* Software Defined Networks         Audit
 
 # Experience 
 
